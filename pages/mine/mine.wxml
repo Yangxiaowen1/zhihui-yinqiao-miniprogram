@@ -1,0 +1,92 @@
+<view class="page-mine {{silverMode ? 'silver-mode' : ''}}">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-header" bindtap="goEditProfile">
+      <view class="avatar-wrapper">
+        <image wx:if="{{userInfo.avatarUrl}}" class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"/>
+        <view wx:else class="avatar avatar-placeholder">
+          <text class="avatar-text">{{userInfo.nickName ? userInfo.nickName[0] : 'User'}}</text>
+        </view>
+        <view class="role-badge {{userInfo.role}}">{{roleText}}</view>
+      </view>
+      <view class="user-info">
+        <text class="user-name">{{userInfo.nickName || userInfo.name || '未设置昵称'}}</text>
+        <text class="user-phone">{{userInfo.phone}}</text>
+        <text class="user-community">{{userInfo.community}}</text>
+      </view>
+      <text class="edit-arrow">></text>
+    </view>
+    
+    <!-- 角色特定信息 -->
+    <view class="role-info" wx:if="{{userInfo.role === 'parent'}}">
+      <view class="info-item">
+        <text class="info-label">孩子姓名</text>
+        <text class="info-value">{{userInfo.child.name || '未设置'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">孩子年龄</text>
+        <text class="info-value">{{userInfo.child.age ? userInfo.child.age + '岁' : '未设置'}}</text>
+      </view>
+    </view>
+    
+    <view class="role-info" wx:if="{{userInfo.role === 'expert'}}">
+      <view class="info-item">
+        <text class="info-label">专业领域</text>
+        <text class="info-value">{{userInfo.expertise || '未设置'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">年龄</text>
+        <text class="info-value">{{userInfo.age ? userInfo.age + '岁' : '未设置'}}</text>
+      </view>
+    </view>
+    
+    <view class="role-info" wx:if="{{userInfo.role === 'volunteer'}}">
+      <view class="info-item">
+        <text class="info-label">所在院校</text>
+        <text class="info-value">{{userInfo.school || '未设置'}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 银龄模式切换开关 -->
+  <view class="card silver-mode-card">
+    <view class="silver-mode-header">
+      <text class="silver-mode-icon">Senior</text>
+      <view class="silver-mode-info">
+        <text class="silver-mode-title">银龄模式</text>
+        <text class="silver-mode-desc">大字体、精简功能</text>
+      </view>
+    </view>
+    <switch checked="{{silverMode}}" bindchange="toggleSilverMode" color="#4caf50" class="silver-switch"/>
+  </view>
+  
+  <!-- 功能菜单 -->
+  <view class="card menu-card">
+    <view class="menu-item" bindtap="goEditProfile">
+      <text class="menu-icon">Edit</text>
+      <text class="menu-text">编辑资料</text>
+      <text class="menu-arrow">></text>
+    </view>
+    <navigator url="/pages/my-registrations/my-registrations" class="menu-item">
+      <text class="menu-icon">List</text>
+      <text class="menu-text">我的报名</text>
+      <text class="menu-arrow">></text>
+    </navigator>
+    <navigator url="/pages/credit-archive/credit-archive" class="menu-item">
+      <text class="menu-icon">Credit</text>
+      <text class="menu-text">银龄信用档案</text>
+      <text class="menu-arrow">></text>
+    </navigator>
+    <navigator url="/pages/notifications/notifications" class="menu-item">
+      <text class="menu-icon">Bell</text>
+      <text class="menu-text">消息通知</text>
+      <text class="menu-arrow">></text>
+    </navigator>
+    <view class="menu-item" bindtap="logout">
+      <text class="menu-icon">Logout</text>
+      <text class="menu-text">退出登录</text>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+</view>
+<custom-tab-bar current="3"></custom-tab-bar>

@@ -1,0 +1,113 @@
+<view class="page-detail">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <block wx:else>
+    <!-- 课程头部信息 -->
+    <view class="card head">
+      <view class="head-top">
+        <text class="course-name">{{detail.name}}</text>
+        <view class="fav-btn {{isFav ? 'fav-active' : ''}}" bindtap="toggleFav">
+          {{isFav ? '❤️' : '🤍'}}
+        </view>
+      </view>
+      <view class="status-badge status-{{detail.status}}">{{detail.statusText}}</view>
+      <view class="meta-row">
+        <text class="meta-item">🕐 {{detail.friendlyTime || '时间待定'}}</text>
+        <text class="meta-item">📍 {{detail.place || '地点待定'}}</text>
+      </view>
+      <view class="participant-bar">
+        <view class="bar-fill" style="width: {{detail.currentParticipants / detail.maxParticipants * 100}}%"></view>
+      </view>
+      <text class="participant-text">{{detail.currentParticipants || 0}}/{{detail.maxParticipants || 20}}人 · {{detail.remainingSpots > 0 ? '剩余' + detail.remainingSpots + '位' : '已满'}}</text>
+    </view>
+
+    <!-- 课程信息 -->
+    <view class="card">
+      <text class="section-title">课程详情</text>
+      <view class="info-grid">
+        <view class="info-item" wx:if="{{detail.teacherName}}">
+          <text class="info-label">授课导师</text>
+          <text class="info-value">{{detail.teacherName}}</text>
+        </view>
+        <view class="info-item" wx:if="{{detail.category}}">
+          <text class="info-label">课程类型</text>
+          <text class="info-value">{{detail.category === 'culture' ? '文化传承' : detail.category === 'skill' ? '技能分享' : detail.category === 'story' ? '故事课堂' : detail.category === 'health' ? '健康养生' : detail.category === 'art' ? '艺术鉴赏' : detail.category}}</text>
+        </view>
+        <view class="info-item" wx:if="{{detail.ageRange}}">
+          <text class="info-label">适合年龄</text>
+          <text class="info-value">{{detail.ageRange}}</text>
+        </view>
+        <view class="info-item" wx:if="{{detail.community}}">
+          <text class="info-label">所属社区</text>
+          <text class="info-value">{{detail.community}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 课程介绍 -->
+    <view class="card" wx:if="{{detail.intro || detail.description}}">
+      <text class="section-title">课程介绍</text>
+      <text class="course-intro">{{detail.intro || detail.description}}</text>
+    </view>
+
+    <!-- 家长角色：我的报名状态 -->
+    <view class="card" wx:if="{{role === 'parent' && myRegistration}}">
+      <text class="section-title">我的报名</text>
+      <view class="registration-info">
+        <text class="reg-status reg-{{myRegistration.status}}">{{myRegistration.status === 'registered' ? '已报名' : myRegistration.status === 'attended' ? '已签到' : myRegistration.status === 'completed' ? '已完成' : myRegistration.status}}</text>
+        <text class="reg-time">报名时间：{{myRegistration.friendlyTime || '—'}}</text>
+      </view>
+    </view>
+
+    <!-- 专家角色：报名列表 -->
+    <view class="card" wx:if="{{role === 'expert'}}">
+      <text class="section-title">报名管理 ({{enrollmentList.length}}人)</text>
+      <view wx:if="{{enrollmentList.length === 0}}" class="empty-section">暂无学员报名</view>
+      <view class="enrollment-list" wx:else>
+        <view class="enrollment-item" wx:for="{{enrollmentList}}" wx:key="_id">
+          <text class="enroll-name">{{item.contactInfo.name || item.userName || '学员'}}</text>
+          <text class="enroll-status enroll-{{item.status}}">{{item.status === 'registered' ? '已报名' : item.status === 'attended' ? '已签到' : item.status}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 志愿者角色：助教信息 -->
+    <view class="card" wx:if="{{role === 'volunteer'}}">
+      <text class="section-title">助教信息</text>
+      <view wx:if="{{detail.needAssistant}}" class="assistant-info">
+        <text class="assistant-text">本课程需要助教协助</text>
+        <text class="assistant-status {{isAssistant ? 'joined' : ''}}">{{isAssistant ? '✓ 已报名助教' : '尚未报名'}}</text>
+      </view>
+      <view wx:else class="empty-section">本课程暂不需要助教</view>
+    </view>
+
+    <!-- 底部操作按钮 -->
+    <view class="btns">
+      <!-- 家长操作 -->
+      <block wx:if="{{role === 'parent'}}">
+        <button class="btn btn-primary" wx:if="{{!myRegistration && detail.status === 'available'}}" bindtap="registerCourse">立即报名</button>
+        <button class="btn btn-danger" wx:if="{{myRegistration && myRegistration.status === 'registered'}}" bindtap="cancelRegistration">取消报名</button>
+        <button class="btn btn-secondary" wx:if="{{myRegistration && myRegistration.status === 'attended'}}" bindtap="goEvaluate">去评价</button>
+        <view class="btn-disabled" wx:if="{{detail.status === 'full' && !myRegistration}}">课程已满员</view>
+        <view class="btn-disabled" wx:if="{{detail.status === 'ended'}}">课程已结束</view>
+      </block>
+
+      <!-- 专家操作 -->
+      <block wx:if="{{role === 'expert'}}">
+        <button class="btn btn-primary" bindtap="goEdit">编辑课程</button>
+        <button class="btn btn-danger-outline" wx:if="{{detail.status !== 'ended'}}" bindtap="closeCourse">关闭课程</button>
+      </block>
+
+      <!-- 志愿者操作 -->
+      <block wx:if="{{role === 'volunteer'}}">
+        <button class="btn btn-primary" wx:if="{{!isAssistant && detail.needAssistant && detail.status === 'available'}}" bindtap="signupAssistant">报名助教</button>
+        <view class="btn-disabled" wx:if="{{isAssistant}}">已报名助教</view>
+        <view class="btn-disabled" wx:if="{{!detail.needAssistant}}">无需助教</view>
+      </block>
+    </view>
+  </block>
+</view>

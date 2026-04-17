@@ -1,0 +1,367 @@
+<!-- 智汇银桥 - 分角色首页 -->
+<view class="page-index {{silverMode ? 'silver-mode' : ''}}">
+  <!-- 未登录页面 -->
+  <view class="login-page" wx:if="{{!isLoggedIn}}">
+    <view class="login-container">
+      <view class="login-header-large">
+        <view class="app-logo">Home</view>
+        <text class="app-title">智汇银桥</text>
+        <text class="app-slogan">智慧养老 幸福生活</text>
+      </view>
+      
+      <view class="login-form">
+        <button class="login-btn-large" bindtap="goLogin">请先登录</button>
+      </view>
+      
+      <view class="feature-preview">
+        <view class="preview-item">
+          <view class="preview-icon">Book</view>
+          <text class="preview-text">智享学堂</text>
+        </view>
+        <view class="preview-item">
+          <view class="preview-icon">User</view>
+          <text class="preview-text">银龄智库</text>
+        </view>
+        <view class="preview-item">
+          <view class="preview-icon">Handshake</view>
+          <text class="preview-text">青银共创</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已登录 - 家长首页 -->
+  <view class="home-page" wx:if="{{isLoggedIn && userRole === 'parent'}}">
+    <!-- 顶部欢迎区域 -->
+    <view class="welcome-section">
+      <view class="welcome-card parent-header">
+        <view class="welcome-content">
+          <view class="user-avatar-large parent-avatar">
+            <text class="avatar-text">{{userInfo.nickName ? userInfo.nickName[0] : 'P'}}</text>
+          </view>
+          <view class="welcome-info">
+            <text class="welcome-text">您好，{{userInfo.nickName || '家长'}}</text>
+            <text class="welcome-sub">{{userInfo.community || '智汇银桥'}}</text>
+          </view>
+        </view>
+        <view class="role-badge parent">家长</view>
+      </view>
+    </view>
+
+    <!-- 智享学堂模块 -->
+    <view class="modules-section">
+      <view class="section-header">
+        <text class="section-title">智享学堂</text>
+      </view>
+      <view class="modules">
+        <view class="module-card module-green" bindtap="goCourse">
+          <view class="icon-box icon-box-green">Book</view>
+          <text class="module-name">课程报名</text>
+          <text class="module-desc">浏览并报名课程</text>
+        </view>
+        <view class="module-card module-blue" bindtap="goMyOrders">
+          <view class="icon-box icon-box-blue">List</view>
+          <text class="module-name">我的订单</text>
+          <text class="module-desc">查看报名状态</text>
+        </view>
+        <view class="module-card module-orange" bindtap="goMyChildren">
+          <view class="icon-box icon-box-orange">Child</view>
+          <text class="module-name">我的孩子</text>
+          <text class="module-desc">子女信息管理</text>
+        </view>
+        <view class="module-card module-purple" bindtap="goExpertList">
+          <view class="icon-box icon-box-purple">Star</view>
+          <text class="module-name">导师档案</text>
+          <text class="module-desc">查看导师信用</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 推荐课程 -->
+    <view class="recommend-section">
+      <view class="section-header">
+        <text class="section-title">推荐课程</text>
+        <text class="section-more" bindtap="goCourse">更多</text>
+      </view>
+      <view class="course-list">
+        <view class="course-item" wx:for="{{recommendCourses}}" wx:key="_id" bindtap="goCourseDetail" data-id="{{item._id}}">
+          <view class="course-info">
+            <text class="course-name">{{item.name}}</text>
+            <text class="course-teacher">{{item.teacherName}} | {{item.place}}</text>
+            <view class="course-meta">
+              <text class="course-participants">{{item.currentParticipants}}/{{item.maxParticipants}}人</text>
+              <text class="course-rating">{{item.avgRating}}分</text>
+            </view>
+          </view>
+          <view class="course-action">
+            <text class="course-arrow">></text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 快捷服务 -->
+    <view class="services-section">
+      <view class="section-header">
+        <text class="section-title">服务中心</text>
+      </view>
+      <view class="service-grid">
+        <view class="service-item" bindtap="goMyRegistrations">
+          <text class="service-icon">List</text>
+          <text class="service-name">我的报名</text>
+        </view>
+        <view class="service-item" bindtap="goCreditArchive">
+          <text class="service-icon">Credit</text>
+          <text class="service-name">信用档案</text>
+        </view>
+        <view class="service-item" bindtap="goNotifications">
+          <text class="service-icon">Bell</text>
+          <text class="service-name">消息通知</text>
+        </view>
+        <view class="service-item" bindtap="goSearch">
+          <text class="service-icon">Search</text>
+          <text class="service-name">搜索</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已登录 - 银龄导师首页 -->
+  <view class="home-page expert-home" wx:if="{{isLoggedIn && userRole === 'expert'}}">
+    <!-- 顶部欢迎区域 -->
+    <view class="welcome-section">
+      <view class="welcome-card expert-header">
+        <view class="welcome-content">
+          <view class="user-avatar-large expert-avatar">
+            <text class="avatar-text">{{userInfo.nickName ? userInfo.nickName[0] : 'E'}}</text>
+          </view>
+          <view class="welcome-info">
+            <view class="expert-title-row">
+              <text class="welcome-text">{{userInfo.nickName || '银龄导师'}}</text>
+              <view class="star-badge">
+                <text class="star-icon" wx:for="{{[1,2,3]}}" wx:for-item="star" wx:if="{{star <= expertProfile.starLevel}}">Star</text>
+              </view>
+            </view>
+            <text class="welcome-sub">{{expertProfile.expertise || '专业导师'}}</text>
+          </view>
+        </view>
+        <view class="role-badge expert">银龄导师</view>
+      </view>
+    </view>
+
+    <!-- 三星评级卡片 -->
+    <view class="rating-card">
+      <view class="rating-header">
+        <text class="rating-title">我的评级</text>
+        <view class="star-display">
+          <text class="star-filled" wx:for="{{[1,2,3]}}" wx:for-item="star" wx:if="{{star <= expertProfile.starLevel}}">Star</text>
+          <text class="star-empty" wx:for="{{[1,2,3]}}" wx:for-item="star" wx:if="{{star > expertProfile.starLevel}}">Star</text>
+        </view>
+      </view>
+      <view class="rating-stats">
+        <view class="stat-item">
+          <text class="stat-value">{{expertProfile.totalHours || 0}}</text>
+          <text class="stat-label">课时</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{expertProfile.totalStudents || 0}}</text>
+          <text class="stat-label">学员</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{expertProfile.avgRating || 5.0}}</text>
+          <text class="stat-label">评分</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value earnings">+{{expertProfile.monthEarnings || 0}}</text>
+          <text class="stat-label">本月收益</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 授课管理模块 -->
+    <view class="modules-section">
+      <view class="section-header">
+        <text class="section-title">授课管理</text>
+      </view>
+      <view class="modules">
+        <view class="module-card module-green" bindtap="goMyCourses">
+          <view class="icon-box icon-box-green">Book</view>
+          <text class="module-name">我的课程</text>
+          <text class="module-desc">管理授课课程</text>
+        </view>
+        <view class="module-card module-blue" bindtap="goPendingOrders">
+          <view class="icon-box icon-box-blue">List</view>
+          <text class="module-name">待处理订单</text>
+          <text class="module-desc">查看新报名</text>
+          <view class="badge" wx:if="{{pendingOrders > 0}}">{{pendingOrders}}</view>
+        </view>
+        <view class="module-card module-orange" bindtap="goServiceRecords">
+          <view class="icon-box icon-box-orange">History</view>
+          <text class="module-name">服务记录</text>
+          <text class="module-desc">历史授课记录</text>
+        </view>
+        <view class="module-card module-purple" bindtap="goEarnings">
+          <view class="icon-box icon-box-purple">Money</view>
+          <text class="module-name">收益统计</text>
+          <text class="module-desc">课时收益明细</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 待处理订单 -->
+    <view class="pending-section" wx:if="{{pendingOrdersList.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">待处理订单</text>
+        <text class="section-more" bindtap="goPendingOrders">全部</text>
+      </view>
+      <view class="order-list">
+        <view class="order-item" wx:for="{{pendingOrdersList}}" wx:key="_id">
+          <view class="order-info">
+            <text class="order-course">{{item.courseName}}</text>
+            <text class="order-user">报名人：{{item.userName}}</text>
+            <text class="order-time">{{item.createTime}}</text>
+          </view>
+          <view class="order-actions">
+            <button class="btn-confirm" bindtap="confirmOrder" data-id="{{item._id}}">确认</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 信用档案 -->
+    <view class="credit-section">
+      <view class="section-header">
+        <text class="section-title">我的信用档案</text>
+      </view>
+      <view class="credit-card">
+        <view class="credit-score">
+          <text class="score-value">{{userInfo.creditScore || 100}}</text>
+          <text class="score-label">信用分</text>
+        </view>
+        <view class="credit-status">
+          <text class="status-text">{{userInfo.creditScore >= 90 ? '优质导师' : '信用良好'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已登录 - 青年志愿者首页 -->
+  <view class="home-page volunteer-home" wx:if="{{isLoggedIn && userRole === 'volunteer'}}">
+    <!-- 顶部欢迎区域 -->
+    <view class="welcome-section">
+      <view class="welcome-card volunteer-header">
+        <view class="welcome-content">
+          <view class="user-avatar-large volunteer-avatar">
+            <text class="avatar-text">{{userInfo.nickName ? userInfo.nickName[0] : 'V'}}</text>
+          </view>
+          <view class="welcome-info">
+            <text class="welcome-text">{{userInfo.nickName || '青年志愿者'}}</text>
+            <text class="welcome-sub">{{(userInfo.volunteerInfo && userInfo.volunteerInfo.school) || '志愿者'}}</text>
+          </view>
+        </view>
+        <view class="role-badge volunteer">青年志愿者</view>
+      </view>
+    </view>
+
+    <!-- 志愿统计卡片 -->
+    <view class="volunteer-stats-card">
+      <view class="stats-header">
+        <text class="stats-title">志愿统计</text>
+      </view>
+      <view class="stats-grid">
+        <view class="stats-item">
+          <text class="stats-value">{{volunteerStats.totalHours || 0}}</text>
+          <text class="stats-label">累计时长(小时)</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-value">{{volunteerStats.totalActivities || 0}}</text>
+          <text class="stats-label">参与活动</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-value">{{volunteerStats.helpedSeniors || 0}}</text>
+          <text class="stats-label">帮助老人</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-value">{{volunteerStats.monthHours || 0}}</text>
+          <text class="stats-label">本月时长</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 青银共创模块 -->
+    <view class="modules-section">
+      <view class="section-header">
+        <text class="section-title">青银共创</text>
+      </view>
+      <view class="modules">
+        <view class="module-card module-green" bindtap="goActivities">
+          <view class="icon-box icon-box-green">Calendar</view>
+          <text class="module-name">活动报名</text>
+          <text class="module-desc">参与志愿服务</text>
+        </view>
+        <view class="module-card module-blue" bindtap="goVolunteerTasks">
+          <view class="icon-box icon-box-blue">Task</view>
+          <text class="module-name">助老任务</text>
+          <text class="module-desc">领取帮助任务</text>
+        </view>
+        <view class="module-card module-orange" bindtap="goMyHours">
+          <view class="icon-box icon-box-orange">Clock</view>
+          <text class="module-name">我的时长</text>
+          <text class="module-desc">志愿时长记录</text>
+        </view>
+        <view class="module-card module-purple" bindtap="goTeamActivities">
+          <view class="icon-box icon-box-purple">Users</view>
+          <text class="module-name">组队活动</text>
+          <text class="module-desc">团队志愿活动</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 推荐活动 -->
+    <view class="recommend-section">
+      <view class="section-header">
+        <text class="section-title">推荐活动</text>
+        <text class="section-more" bindtap="goActivities">更多</text>
+      </view>
+      <view class="activity-list">
+        <view class="activity-item" wx:for="{{recommendActivities}}" wx:key="_id" bindtap="goActivityDetail" data-id="{{item._id}}">
+          <view class="activity-info">
+            <text class="activity-name">{{item.name}}</text>
+            <text class="activity-time">{{item.startTime}}</text>
+            <view class="activity-meta">
+              <text class="activity-place">{{item.place}}</text>
+              <text class="activity-points">+{{item.points}}积分</text>
+            </view>
+          </view>
+          <view class="activity-action">
+            <button class="btn-join">报名</button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 快捷服务 -->
+    <view class="services-section">
+      <view class="section-header">
+        <text class="section-title">服务中心</text>
+      </view>
+      <view class="service-grid">
+        <view class="service-item" bindtap="goMyRegistrations">
+          <text class="service-icon">List</text>
+          <text class="service-name">我的报名</text>
+        </view>
+        <view class="service-item" bindtap="goCreditArchive">
+          <text class="service-icon">Credit</text>
+          <text class="service-name">信用档案</text>
+        </view>
+        <view class="service-item" bindtap="goNotifications">
+          <text class="service-icon">Bell</text>
+          <text class="service-name">消息通知</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 自定义 tabBar -->
+<custom-tab-bar current="0"></custom-tab-bar>

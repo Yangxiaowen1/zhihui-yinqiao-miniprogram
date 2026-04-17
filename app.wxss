@@ -1,0 +1,295 @@
+/**app.wxss**/
+page {
+  --primary: #4caf50;
+  --primary-light: #e8f5e8;
+  --secondary: #ff9800;
+  --secondary-light: #fff3e0;
+  --text: #333;
+  --text-secondary: #666;
+  --text-placeholder: #999;
+  --border: #e0e0e0;
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  background-color: var(--bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 32rpx;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* 银龄模式样式 - 大字号效果 */
+page.silver-mode {
+  --font-scale: 1.25;
+  font-size: 40rpx;
+  line-height: 1.6;
+}
+
+/* 银龄模式下的基础样式覆盖 */
+page.silver-mode .container {
+  padding: 32rpx;
+}
+
+page.silver-mode .card {
+  padding: 48rpx;
+  margin-bottom: 32rpx;
+}
+
+page.silver-mode .btn-primary,
+page.silver-mode .btn-secondary,
+page.silver-mode .btn-accent {
+  padding: 40rpx;
+  font-size: 40rpx;
+  min-height: 120rpx;
+}
+
+page.silver-mode .section-title {
+  font-size: 48rpx;
+}
+
+page.silver-mode .section-more {
+  font-size: 36rpx;
+}
+
+page.silver-mode .text-large {
+  font-size: 48rpx;
+}
+
+page.silver-mode .text-medium {
+  font-size: 40rpx;
+}
+
+page.silver-mode .text-small {
+  font-size: 36rpx;
+}
+
+page.silver-mode .form-label,
+page.silver-mode .form-input {
+  font-size: 40rpx;
+  padding: 32rpx;
+}
+
+page.silver-mode .icon-box {
+  width: 160rpx;
+  height: 160rpx;
+  font-size: 72rpx;
+}
+
+.container {
+  box-sizing: border-box;
+  padding: 24rpx;
+  min-height: 100vh;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 20rpx;
+  padding: 36rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.08);
+  border: 2rpx solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8rpx;
+  height: 100%;
+  background: var(--primary);
+  border-radius: 20rpx 0 0 20rpx;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 20rpx;
+  text-align: center;
+  padding: 32rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  min-height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(76, 175, 80, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:active {
+  transform: scale(0.96);
+  box-shadow: 0 2rpx 8rpx rgba(76, 175, 80, 0.4);
+}
+
+.btn-secondary {
+  background: var(--card-bg);
+  color: var(--primary);
+  border: 3rpx solid var(--primary);
+  border-radius: 20rpx;
+  text-align: center;
+  padding: 32rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  min-height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:active {
+  background: var(--primary-light);
+  transform: scale(0.96);
+}
+
+.btn-accent {
+  background: var(--secondary);
+  color: #fff;
+  border-radius: 20rpx;
+  text-align: center;
+  padding: 32rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  min-height: 96rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(255, 152, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-accent:active {
+  transform: scale(0.96);
+  box-shadow: 0 2rpx 8rpx rgba(255, 152, 0, 0.4);
+}
+
+.icon-box {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  margin: 0 auto 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.1);
+}
+
+.icon-box-green {
+  background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+}
+
+.icon-box-blue {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+
+.icon-box-orange {
+  background: linear-gradient(135deg, #fff3e0, #ffcc80);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #000;
+  flex: 1;
+}
+
+.section-more {
+  font-size: 28rpx;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+}
+
+.section-more::after {
+  content: '›';
+  margin-left: 8rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.text-large {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.text-medium {
+  font-size: 32rpx;
+}
+
+.text-small {
+  font-size: 28rpx;
+}
+
+.high-contrast {
+  color: #000;
+  font-weight: bold;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 24rpx;
+  color: #000;
+}
+
+.form-item {
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  color: #000;
+}
+
+.form-input {
+  font-size: 32rpx;
+  padding: 24rpx;
+  border: 2rpx solid var(--border);
+  border-radius: 12rpx;
+  background: #fff;
+}
+
+.notification {
+  background: #fff;
+  border-left: 8rpx solid var(--primary);
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+}
+
+/* 银龄模式下的通知样式 */
+page.silver-mode .notification {
+  padding: 32rpx;
+  font-size: 40rpx;
+}
+
+/* 银龄模式专属工具类 */
+.silver-text {
+  font-size: 44rpx;
+  font-weight: bold;
+  line-height: 1.8;
+}
+
+.silver-btn {
+  min-height: 140rpx !important;
+  font-size: 44rpx !important;
+  padding: 36rpx !important;
+}
+
+.silver-card {
+  padding: 48rpx !important;
+  margin-bottom: 32rpx !important;
+}

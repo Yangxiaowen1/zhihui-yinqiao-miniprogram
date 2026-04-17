@@ -1,0 +1,117 @@
+<view class="page-course-list">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="header-left">
+      <text class="page-title">智享学堂</text>
+      <text class="page-desc">发现精彩课程，开启学习之旅</text>
+    </view>
+    <view class="role-tag">{{roleName}}</view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-tabs">
+      <view class="filter-tab {{activeFilter === 'category' ? 'active' : ''}}" bindtap="toggleFilter" data-type="category">
+        <text>{{filterLabels.category}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+      <view class="filter-tab {{activeFilter === 'ageRange' ? 'active' : ''}}" bindtap="toggleFilter" data-type="ageRange">
+        <text>{{filterLabels.ageRange}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+      <view class="filter-tab {{activeFilter === 'status' ? 'active' : ''}}" bindtap="toggleFilter" data-type="status">
+        <text>{{filterLabels.status}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+      <view class="filter-tab {{activeFilter === 'community' ? 'active' : ''}}" bindtap="toggleFilter" data-type="community">
+        <text>{{filterLabels.community}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+    </view>
+
+    <!-- 筛选下拉面板 -->
+    <view class="filter-panel" wx:if="{{showFilterPanel}}">
+      <view class="filter-options" wx:if="{{activeFilter === 'category'}}">
+        <view class="filter-option {{filters.category === item.id ? 'selected' : ''}}"
+          wx:for="{{categories}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="category" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-options" wx:if="{{activeFilter === 'ageRange'}}">
+        <view class="filter-option {{filters.ageRange === item.id ? 'selected' : ''}}"
+          wx:for="{{ageRanges}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="ageRange" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-options" wx:if="{{activeFilter === 'status'}}">
+        <view class="filter-option {{filters.status === item.id ? 'selected' : ''}}"
+          wx:for="{{statusOptions}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="status" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-options" wx:if="{{activeFilter === 'community'}}">
+        <view class="filter-option {{filters.community === item.id ? 'selected' : ''}}"
+          wx:for="{{communityOptions}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="community" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-reset" bindtap="resetFilters">重置筛选</view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading && list.length === 0}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:elif="{{list.length === 0}}" class="empty-container">
+    <text class="empty-icon">📚</text>
+    <text class="empty-text">暂无课程</text>
+    <text class="empty-desc">换个筛选条件试试吧</text>
+  </view>
+
+  <!-- 课程列表 -->
+  <view wx:else class="list">
+    <view class="course-card" wx:for="{{list}}" wx:key="_id">
+      <view class="card-main" bindtap="goDetail" data-id="{{item._id}}">
+        <view class="card-left">
+          <text class="course-name">{{item.name}}</text>
+          <view class="course-meta">
+            <text class="course-teacher">👨‍🏫 {{item.teacherName || item.teacher || '待定'}}</text>
+            <text class="course-time">🕐 {{item.friendlyTime || item.time || '待定'}}</text>
+          </view>
+          <view class="course-tags" wx:if="{{item.category || item.ageRange}}">
+            <text class="course-tag" wx:if="{{item.category}}">{{item.category === 'culture' ? '文化传承' : item.category === 'skill' ? '技能分享' : item.category === 'story' ? '故事课堂' : item.category === 'health' ? '健康养生' : item.category === 'art' ? '艺术鉴赏' : item.category}}</text>
+            <text class="course-tag age-tag" wx:if="{{item.ageRange}}">{{item.ageRange}}</text>
+          </view>
+          <text class="course-count">{{item.currentParticipants || 0}}/{{item.maxParticipants || 20}}人</text>
+        </view>
+        <view class="card-right">
+          <text class="status status-{{item.status}}">{{item.statusText}}</text>
+          <text class="remaining" wx:if="{{item.status === 'available' && item.remainingSpots <= 3}}">仅剩{{item.remainingSpots}}位</text>
+        </view>
+      </view>
+      <view class="card-actions">
+        <!-- 收藏按钮 -->
+        <view class="fav-btn {{item.isFav ? 'fav-active' : ''}}" catchtap="toggleFav" data-id="{{item._id}}">
+          {{item.isFav ? '❤️' : '🤍'}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{loading}}">
+      <view class="loading-spinner small"></view>
+      <text class="loading-text">加载更多...</text>
+    </view>
+    <view class="no-more" wx:elif="{{!hasMore && list.length > 0}}">
+      <text>— 没有更多了 —</text>
+    </view>
+  </view>
+</view>

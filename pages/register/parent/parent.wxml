@@ -1,0 +1,71 @@
+<!-- 智汇银桥 - 家长注册表单（简化版） -->
+<view class="register-page">
+  <view class="page-header">
+    <text class="header-title">完善信息</text>
+    <text class="header-subtitle">请填写必要信息完成注册</text>
+  </view>
+
+  <view class="form-container">
+    <!-- 手机号（只读） -->
+    <view class="form-item">
+      <text class="label required">手机号</text>
+      <input class="input" type="number" value="{{phone}}" disabled placeholder="手机号"/>
+    </view>
+
+    <!-- 所在社区 -->
+    <view class="form-item">
+      <text class="label required">所在社区</text>
+      <picker class="picker" mode="selector" range="{{communities}}" value="{{communityIndex}}" bindchange="onCommunityChange">
+        <view class="picker-content">
+          <text class="picker-text {{communityIndex >= 0 ? 'selected' : ''}}">
+            {{communityIndex >= 0 ? communities[communityIndex] : '请选择所在社区'}}
+          </text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 家长姓名 -->
+    <view class="form-item">
+      <text class="label required">家长姓名</text>
+      <input class="input" placeholder="请输入您的姓名" value="{{guardianName}}" bindinput="onGuardianNameInput"/>
+    </view>
+
+    <!-- 孩子姓名 -->
+    <view class="form-item">
+      <text class="label required">孩子姓名</text>
+      <input class="input" placeholder="请输入孩子姓名" value="{{childName}}" bindinput="onChildNameInput"/>
+    </view>
+
+    <!-- 孩子年龄 -->
+    <view class="form-item">
+      <text class="label required">孩子年龄</text>
+      <picker class="picker" mode="selector" range="{{ageRange}}" value="{{childAgeIndex}}" bindchange="onAgeChange">
+        <view class="picker-content">
+          <text class="picker-text {{childAgeIndex >= 0 ? 'selected' : ''}}">
+            {{childAgeIndex >= 0 ? ageRange[childAgeIndex] : '请选择孩子年龄'}}
+          </text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 孩子性别 -->
+    <view class="form-item">
+      <text class="label required">孩子性别</text>
+      <view class="gender-group">
+        <view class="gender-option {{childGender === 'male' ? 'active' : ''}}" bindtap="selectChildGender" data-gender="male">
+          <text class="gender-icon">Boy</text>
+          <text class="gender-text">男</text>
+        </view>
+        <view class="gender-option {{childGender === 'female' ? 'active' : ''}}" bindtap="selectChildGender" data-gender="female">
+          <text class="gender-icon">Girl</text>
+          <text class="gender-text">女</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button class="submit-btn" bindtap="submitRegister">完成注册</button>
+  </view>
+</view>

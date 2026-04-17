@@ -1,0 +1,105 @@
+<view class="page-detail">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <block wx:else>
+    <!-- 活动封面 -->
+    <view class="cover">
+      <view class="type-tag">{{detail.activityTypeText || '活动'}}</view>
+      <text class="cover-emoji">🤝</text>
+      <view class="fav-btn {{isFav ? 'fav-active' : ''}}" bindtap="toggleFav">
+        {{isFav ? '❤️' : '🤍'}}
+      </view>
+    </view>
+
+    <!-- 活动基本信息 -->
+    <view class="card">
+      <view class="head-row">
+        <text class="name">{{detail.name}}</text>
+        <view class="status-badge status-{{detail.status}}">{{detail.statusText}}</view>
+      </view>
+      <view class="info-list">
+        <view class="info-item">
+          <text class="info-icon">🕐</text>
+          <text class="info-text">{{detail.friendlyTime || '时间待定'}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-icon">📍</text>
+          <text class="info-text">{{detail.place || '地点待定'}}</text>
+        </view>
+        <view class="info-item" wx:if="{{detail.community}}">
+          <text class="info-icon">🏘️</text>
+          <text class="info-text">{{detail.community}}</text>
+        </view>
+      </view>
+      <view class="participant-section">
+        <view class="participant-bar">
+          <view class="bar-fill" style="width: {{detail.currentParticipants / detail.maxParticipants * 100}}%"></view>
+        </view>
+        <text class="participant-text">{{detail.currentParticipants || 0}}/{{detail.maxParticipants || 20}}人 · {{detail.remainingSpots > 0 ? '剩余' + detail.remainingSpots + '位' : '已满'}}</text>
+      </view>
+    </view>
+
+    <!-- 活动介绍 -->
+    <view class="card" wx:if="{{detail.description || detail.desc}}">
+      <text class="section-title">活动介绍</text>
+      <text class="desc-text">{{detail.description || detail.desc}}</text>
+    </view>
+
+    <!-- 我的报名状态 -->
+    <view class="card" wx:if="{{myRegistration}}">
+      <text class="section-title">我的报名</text>
+      <view class="registration-info">
+        <text class="reg-status reg-{{myRegistration.status}}">{{myRegistration.status === 'registered' ? '已报名' : myRegistration.status === 'attended' ? '已签到' : myRegistration.status === 'completed' ? '已完成' : myRegistration.status}}</text>
+        <text class="reg-identity" wx:if="{{myRegistration.identity}}">{{myRegistration.identity === 'youth' ? '志愿者' : myRegistration.identity === 'elderly' ? '导师' : '家长'}}</text>
+      </view>
+    </view>
+
+    <!-- 已结束活动回顾 -->
+    <view class="card" wx:if="{{detail.status === 'ended' && recap}}">
+      <text class="section-title">活动回顾</text>
+      <text class="recap-text">{{recap.content || recap.summary || '活动已圆满结束'}}</text>
+      <view class="recap-stats" wx:if="{{recap.stats}}">
+        <view class="recap-stat" wx:if="{{recap.stats.participants}}">
+          <text class="recap-value">{{recap.stats.participants}}</text>
+          <text class="recap-label">参与人数</text>
+        </view>
+        <view class="recap-stat" wx:if="{{recap.stats.hours}}">
+          <text class="recap-value">{{recap.stats.hours}}h</text>
+          <text class="recap-label">服务时长</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作按钮 -->
+    <view class="btns">
+      <!-- 志愿者操作 -->
+      <block wx:if="{{role === 'volunteer'}}">
+        <button class="btn btn-primary" wx:if="{{!myRegistration && detail.status === 'available'}}" bindtap="registerActivity">报名参加</button>
+        <button class="btn btn-secondary" wx:if="{{myRegistration && myRegistration.status === 'registered'}}" bindtap="showCheckinQR">扫码签到</button>
+        <button class="btn btn-danger" wx:if="{{myRegistration && myRegistration.status === 'registered'}}" bindtap="cancelRegistration">取消报名</button>
+        <view class="btn-disabled" wx:if="{{detail.status === 'full' && !myRegistration}}">活动已满员</view>
+        <view class="btn-disabled" wx:if="{{detail.status === 'ended'}}">活动已结束</view>
+      </block>
+
+      <!-- 专家操作 -->
+      <block wx:if="{{role === 'expert'}}">
+        <button class="btn btn-primary" wx:if="{{!myRegistration && detail.status === 'available'}}" bindtap="registerActivity">报名指导</button>
+        <view class="btn-disabled" wx:if="{{myRegistration}}">已报名指导</view>
+        <view class="btn-disabled" wx:if="{{detail.status === 'ended'}}">活动已结束</view>
+      </block>
+
+      <!-- 家长操作 -->
+      <block wx:if="{{role === 'parent'}}">
+        <button class="btn btn-primary" wx:if="{{!myRegistration && detail.status === 'available'}}" bindtap="registerActivity">家庭报名</button>
+        <button class="btn btn-secondary" wx:if="{{myRegistration && myRegistration.status === 'registered'}}" bindtap="goTeam">去组队</button>
+        <button class="btn btn-danger" wx:if="{{myRegistration && myRegistration.status === 'registered'}}" bindtap="cancelRegistration">取消报名</button>
+        <view class="btn-disabled" wx:if="{{detail.status === 'full' && !myRegistration}}">活动已满员</view>
+        <view class="btn-disabled" wx:if="{{detail.status === 'ended'}}">活动已结束</view>
+      </block>
+    </view>
+  </block>
+</view>

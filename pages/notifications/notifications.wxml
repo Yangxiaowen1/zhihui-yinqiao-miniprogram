@@ -1,0 +1,8 @@
+<view class="page-notifications">
+  <view class="card" wx:for="{{list}}" wx:key="id">
+    <text class="title">{{item.title}}</text>
+    <text class="content">{{item.content}}</text>
+    <text class="time">{{item.time}}</text>
+  </view>
+  <view class="empty" wx:if="{{list.length === 0}}">暂无消息</view>
+</view>

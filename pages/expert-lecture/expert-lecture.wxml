@@ -1,0 +1,132 @@
+<!-- 银龄智库专家巡讲活动详情 -->
+<view class="page-expert-lecture">
+  <!-- 活动封面 -->
+  <view class="lecture-banner">
+    <view class="banner-bg">👨‍⚕️</view>
+    <view class="banner-content">
+      <text class="banner-title">银龄智库专家巡讲</text>
+      <text class="banner-subtitle">Wisdom Bridge Expert Lecture</text>
+    </view>
+  </view>
+
+  <!-- 当前巡讲活动 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">本期巡讲</text>
+      <text class="section-badge">进行中</text>
+    </view>
+    <view class="lecture-card current">
+      <view class="lecture-header">
+        <view class="expert-avatar">👨‍⚕️</view>
+        <view class="expert-info">
+          <text class="expert-name">王健康 教授</text>
+          <text class="expert-title">三甲医院主任医师</text>
+          <text class="expert-field">老年医学 · 健康管理</text>
+        </view>
+      </view>
+      <view class="lecture-body">
+        <view class="info-row">
+          <text class="info-label">📅 时间</text>
+          <text class="info-value">2026年4月12日 14:00-16:00</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">📍 地点</text>
+          <text class="info-value">社区活动中心二楼多功能厅</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">🎯 主题</text>
+          <text class="info-value">《春季养生与慢性病管理》</text>
+        </view>
+        <view class="lecture-intro">
+          <text class="intro-title">讲座简介</text>
+          <text class="intro-content">春季是慢性病高发季节，王教授将为大家讲解春季养生要点、常见慢性病的预防与管理方法，以及老年人日常保健知识。现场提供免费健康咨询服务。</text>
+        </view>
+      </view>
+      <button class="btn-join" bindtap="joinLecture">立即报名</button>
+    </view>
+  </view>
+
+  <!-- 往期巡讲回顾 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">往期回顾</text>
+    </view>
+    <view class="history-list">
+      <view class="history-item">
+        <view class="history-date">
+          <text class="date-month">3月</text>
+          <text class="date-day">15</text>
+        </view>
+        <view class="history-content">
+          <text class="history-title">李教授《心脑血管保健》</text>
+          <text class="history-meta">参与人数：86人</text>
+        </view>
+        <text class="history-status">已结束</text>
+      </view>
+      <view class="history-item">
+        <view class="history-date">
+          <text class="date-month">2月</text>
+          <text class="date-day">28</text>
+        </view>
+        <view class="history-content">
+          <text class="history-title">张主任《糖尿病饮食管理》</text>
+          <text class="history-meta">参与人数：72人</text>
+        </view>
+        <text class="history-status">已结束</text>
+      </view>
+      <view class="history-item">
+        <view class="history-date">
+          <text class="date-month">1月</text>
+          <text class="date-day">18</text>
+        </view>
+        <view class="history-content">
+          <text class="history-title">陈医生《冬季防寒保暖》</text>
+          <text class="history-meta">参与人数：95人</text>
+        </view>
+        <text class="history-status">已结束</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 巡讲预告 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">下期预告</text>
+      <text class="section-badge badge-soon">即将开始</text>
+    </view>
+    <view class="lecture-card upcoming">
+      <view class="lecture-header">
+        <view class="expert-avatar">👩‍⚕️</view>
+        <view class="expert-info">
+          <text class="expert-name">刘营养 博士</text>
+          <text class="expert-title">营养学专家</text>
+          <text class="expert-field">膳食营养 · 食疗养生</text>
+        </view>
+      </view>
+      <view class="lecture-body">
+        <view class="info-row">
+          <text class="info-label">📅 时间</text>
+          <text class="info-value">2026年4月26日 14:00-16:00</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">🎯 主题</text>
+          <text class="info-value">《老年人营养膳食搭配》</text>
+        </view>
+      </view>
+      <button class="btn-remind" bindtap="setRemind">设置提醒</button>
+    </view>
+  </view>
+
+  <!-- 服务说明 -->
+  <view class="section">
+    <view class="service-info">
+      <text class="info-title">📋 巡讲服务说明</text>
+      <view class="info-list">
+        <text class="info-item">• 每月举办2-3场专家巡讲活动</text>
+        <text class="info-item">• 涵盖健康、法律、心理等多个领域</text>
+        <text class="info-item">• 现场提供免费咨询和答疑服务</text>
+        <text class="info-item">• 参与活动可获得信用积分奖励</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,96 @@
+<!-- 儿童个人信息保护声明 -->
+<view class="agreement-page">
+  <view class="agreement-content">
+    <view class="agreement-title">儿童个人信息保护声明</view>
+    
+    <view class="update-time">更新日期：2024年1月1日</view>
+    <view class="effective-time">生效日期：2024年1月1日</view>
+
+    <view class="notice-box">
+      <text class="notice-text">智汇银桥高度重视儿童个人信息保护。本声明适用于14周岁以下的儿童用户。我们承诺在收集、使用、存储、共享、转移、公开披露儿童个人信息时，遵循正当必要、知情同意、目的明确、安全保障、依法利用的原则。</text>
+    </view>
+
+    <view class="section">
+      <view class="section-title">一、监护人特别说明</view>
+      <view class="section-content">
+        <text>1. 如您的被监护人（子女）使用智汇银桥服务，请您仔细阅读本声明。</text>
+        <text>2. 您作为监护人，应当正确履行监护职责，保护被监护人的个人信息安全。</text>
+        <text>3. 您代理被监护人进行注册、使用服务等行为，视为您已同意本声明条款。</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">二、儿童个人信息收集</view>
+      <view class="section-content">
+        <text>我们收集儿童信息的范围包括：</text>
+        <text>1. 基本信息：儿童姓名、年龄、性别等（由监护人填写）。</text>
+        <text>2. 课程信息：报名课程、学习记录、评价信息等。</text>
+        <text>3. 活动信息：参与社区活动的记录。</text>
+        <text>我们仅在获得监护人同意后，才会收集儿童的个人信息。</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">三、信息使用目的</view>
+      <view class="section-content">
+        <text>我们使用儿童个人信息仅用于：</text>
+        <text>1. 提供课程报名、活动参与等服务。</text>
+        <text>2. 保障儿童使用服务的安全。</text>
+        <text>3. 向监护人提供儿童的学习报告和活动记录。</text>
+        <text>4. 遵守法律法规规定的义务。</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">四、安全保护措施</view>
+      <view class="section-content">
+        <text>我们采取以下措施保护儿童个人信息：</text>
+        <text>1. 数据加密存储和传输。</text>
+        <text>2. 严格的访问权限控制。</text>
+        <text>3. 定期安全审计和风险评估。</text>
+        <text>4. 员工信息安全培训。</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">五、监护人权利</view>
+      <view class="section-content">
+        <text>作为监护人，您对儿童的个人信息享有以下权利：</text>
+        <text>1. 查阅权：您可以随时查看儿童的个人信息。</text>
+        <text>2. 更正权：您可以更正不准确的儿童信息。</text>
+        <text>3. 删除权：您可以申请删除儿童的个人信息。</text>
+        <text>4. 撤回同意权：您可以撤回之前给予的同意。</text>
+        <text>5. 注销权：您可以申请注销儿童账号。</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">六、信息存储与期限</view>
+      <view class="section-content">
+        <text>1. 儿童个人信息存储在中国境内的服务器。</text>
+        <text>2. 信息保存期限为您使用服务期间，注销账号后将删除或匿名化处理。</text>
+        <text>3. 如发生安全事件，我们将及时通知监护人。</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">七、第三方服务</view>
+      <view class="section-content">
+        <text>我们不会向第三方分享儿童的个人信息，除非：</text>
+        <text>1. 获得监护人的明确同意。</text>
+        <text>2. 根据法律法规或政府要求。</text>
+        <text>3. 为提供服务所必需，且已签署保密协议。</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">八、联系我们</view>
+      <view class="section-content">
+        <text>如您对儿童个人信息保护有任何疑问或需要行使相关权利，请联系：</text>
+        <text>儿童个人信息保护专线：400-XXX-XXXX</text>
+        <text>邮箱：child-protection@zhiyinyinqiao.com</text>
+        <text>我们将在15个工作日内回复您的请求。</text>
+      </view>
+    </view>
+  </view>
+</view>

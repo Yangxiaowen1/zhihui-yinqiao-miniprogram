@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/register/role-select/role-select",
+    "pages/register/parent/parent",
+    "pages/register/expert/expert",
+    "pages/register/volunteer/volunteer",
+    "pages/agreement/user-agreement",
+    "pages/agreement/privacy-policy",
+    "pages/agreement/child-protection",
+    "pages/index/index",
+    "pages/aggregate/aggregate",
+    "pages/credit/credit",
+    "pages/mine/mine",
+    "pages/course/list/list",
+    "pages/course/detail/detail",
+    "pages/course/book/book",
+    "pages/course/scan/scan",
+    "pages/course/evaluate/evaluate",
+    "pages/expert/list/list",
+    "pages/expert/detail/detail",
+    "pages/expert/book/book",
+    "pages/expert/record/record",
+    "pages/activity/list/list",
+    "pages/activity/detail/detail",
+    "pages/activity/register/register",
+    "pages/activity/team/team",
+    "pages/my-registrations/my-registrations",
+    "pages/credit-archive/credit-archive",
+    "pages/notifications/notifications",
+    "pages/search/search",
+    "pages/expert-lecture/expert-lecture",
+    "pages/profile-edit/profile-edit"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "智汇银桥",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999",
+    "selectedColor": "#07c160",
+    "backgroundColor": "#fff",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页" },
+      { "pagePath": "pages/aggregate/aggregate", "text": "聚合" },
+      { "pagePath": "pages/credit/credit", "text": "信用" },
+      { "pagePath": "pages/mine/mine", "text": "我的" },
+      { "pagePath": "pages/my-registrations/my-registrations", "text": "报名" },
+      { "pagePath": "pages/notifications/notifications", "text": "消息" }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,24 @@
+<view class="page-record">
+  <view class="page-desc">老年人咨询问题的记录结果</view>
+  <view class="list">
+    <view class="card" wx:for="{{list}}" wx:key="id">
+      <view class="row">
+        <text class="label">专家</text>
+        <text class="value">{{item.expert}}</text>
+      </view>
+      <view class="row">
+        <text class="label">咨询时间</text>
+        <text class="value">{{item.time}}</text>
+      </view>
+      <view class="row">
+        <text class="label">咨询问题</text>
+        <text class="value">{{item.question}}</text>
+      </view>
+      <view class="row">
+        <text class="label">记录结果</text>
+        <text class="value result">{{item.result}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="empty" wx:if="{{list.length === 0}}">暂无咨询记录</view>
+</view>

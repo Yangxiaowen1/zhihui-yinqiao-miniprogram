@@ -1,0 +1,46 @@
+<!-- 智汇银桥 - 简化角色选择页 -->
+<view class="role-select-page">
+  <!-- 顶部提示 -->
+  <view class="page-header">
+    <text class="page-title">选择您的身份</text>
+    <text class="page-desc">选择后可随时在个人中心完善资料</text>
+  </view>
+
+  <!-- 角色卡片 -->
+  <view class="role-cards">
+    <!-- 家长 -->
+    <view class="role-card role-parent" bindtap="selectRole" data-role="parent">
+      <view class="role-icon">👨‍👩‍👧</view>
+      <view class="role-info">
+        <text class="role-name">家长</text>
+        <text class="role-desc">为孩子报名课程、查看学习情况</text>
+      </view>
+      <view class="role-arrow">›</view>
+    </view>
+
+    <!-- 银龄导师 -->
+    <view class="role-card role-expert" bindtap="selectRole" data-role="expert">
+      <view class="role-icon">👴</view>
+      <view class="role-info">
+        <text class="role-name">银龄导师</text>
+        <text class="role-desc">申请成为社区导师、提供专业服务</text>
+      </view>
+      <view class="role-arrow">›</view>
+    </view>
+
+    <!-- 青年志愿者 -->
+    <view class="role-card role-volunteer" bindtap="selectRole" data-role="volunteer">
+      <view class="role-icon">👨‍🎓</view>
+      <view class="role-info">
+        <text class="role-name">青年志愿者</text>
+        <text class="role-desc">参与青银共创、智慧助老服务</text>
+      </view>
+      <view class="role-arrow">›</view>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="page-footer">
+    <text class="footer-text">注册后可在个人中心补充详细资料</text>
+  </view>
+</view>

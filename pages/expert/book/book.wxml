@@ -1,0 +1,19 @@
+<view class="page-book">
+  <view class="card">
+    <text class="expert-name">{{expertName}}</text>
+    <text class="slot">预约时间：{{slot}}</text>
+  </view>
+  <view class="card">
+    <text class="label">咨询人姓名</text>
+    <input class="input" placeholder="请输入您的姓名" value="{{name}}" bindinput="onNameInput" />
+  </view>
+  <view class="card">
+    <text class="label">联系电话</text>
+    <input class="input" type="number" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" />
+  </view>
+  <view class="card">
+    <text class="label">咨询问题（必填）</text>
+    <textarea class="textarea" placeholder="请简要描述您要咨询的问题，专家将提前了解并准备" value="{{question}}" bindinput="onQuestionInput" />
+  </view>
+  <button class="btn btn-primary" bindtap="submit">提交预约</button>
+</view>

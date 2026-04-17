@@ -1,0 +1,142 @@
+/* 智汇银桥 - 银龄导师注册表单样式（简化版） */
+.register-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff3e0 0%, #f5f5f5 100%);
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.page-header {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.header-title {
+  display: block;
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #e65100;
+  margin-bottom: 16rpx;
+}
+
+.header-subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.form-container {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.08);
+}
+
+.form-item {
+  margin-bottom: 32rpx;
+}
+
+.label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.label.required::before {
+  content: '*';
+  color: #f44336;
+  margin-right: 8rpx;
+}
+
+.input {
+  height: 88rpx;
+  background: #f8f9fa;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  font-size: 30rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.input:disabled {
+  background: #f0f0f0;
+  color: #999;
+}
+
+.picker {
+  width: 100%;
+}
+
+.picker-content {
+  height: 88rpx;
+  background: #f8f9fa;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.picker-text {
+  font-size: 30rpx;
+  color: #999;
+}
+
+.picker-text.selected {
+  color: #333;
+}
+
+.picker-arrow {
+  font-size: 32rpx;
+  color: #ccc;
+}
+
+.time-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.time-option {
+  width: calc(50% - 10rpx);
+  height: 80rpx;
+  background: #f8f9fa;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.time-option.active {
+  background: #fff3e0;
+  border-color: #ff9800;
+}
+
+.time-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 96rpx;
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+  border: none;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-top: 40rpx;
+  box-shadow: 0 6rpx 20rpx rgba(255, 152, 0, 0.3);
+}
+
+.submit-btn:active {
+  opacity: 0.9;
+}

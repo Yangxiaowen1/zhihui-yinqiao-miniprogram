@@ -1,0 +1,103 @@
+<view class="page-activity-list">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="header-left">
+      <text class="page-title">青银共创</text>
+      <text class="page-desc">志愿服务，共筑美好社区</text>
+    </view>
+    <view class="role-tag">{{roleName}}</view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-tabs">
+      <view class="filter-tab {{activeFilter === 'activityType' ? 'active' : ''}}" bindtap="toggleFilter" data-type="activityType">
+        <text>{{filterLabels.activityType}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+      <view class="filter-tab {{activeFilter === 'status' ? 'active' : ''}}" bindtap="toggleFilter" data-type="status">
+        <text>{{filterLabels.status}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+      <view class="filter-tab {{activeFilter === 'community' ? 'active' : ''}}" bindtap="toggleFilter" data-type="community">
+        <text>{{filterLabels.community}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+    </view>
+
+    <view class="filter-panel" wx:if="{{showFilterPanel}}">
+      <view class="filter-options" wx:if="{{activeFilter === 'activityType'}}">
+        <view class="filter-option {{filters.activityType === item.id ? 'selected' : ''}}"
+          wx:for="{{typeOptions}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="activityType" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-options" wx:if="{{activeFilter === 'status'}}">
+        <view class="filter-option {{filters.status === item.id ? 'selected' : ''}}"
+          wx:for="{{statusOptions}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="status" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-options" wx:if="{{activeFilter === 'community'}}">
+        <view class="filter-option {{filters.community === item.id ? 'selected' : ''}}"
+          wx:for="{{communityOptions}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="community" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-reset" bindtap="resetFilters">重置筛选</view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading && list.length === 0}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:elif="{{list.length === 0}}" class="empty-container">
+    <text class="empty-icon">🤝</text>
+    <text class="empty-text">暂无活动</text>
+    <text class="empty-desc">换个筛选条件试试吧</text>
+  </view>
+
+  <!-- 活动列表 -->
+  <view wx:else class="list">
+    <view class="activity-card" wx:for="{{list}}" wx:key="_id">
+      <view class="card-cover">
+        <view class="type-tag">{{item.activityTypeText}}</view>
+        <text class="cover-emoji">🤝</text>
+      </view>
+      <view class="card-body">
+        <text class="activity-name">{{item.name}}</text>
+        <view class="activity-meta">
+          <text class="meta-item">🕐 {{item.friendlyTime || '时间待定'}}</text>
+          <text class="meta-item">📍 {{item.place || '地点待定'}}</text>
+        </view>
+        <view class="activity-footer">
+          <text class="participant-count">{{item.currentParticipants || 0}}/{{item.maxParticipants || 20}}人</text>
+          <text class="status status-{{item.status}}">{{item.statusText}}</text>
+          <text class="remaining" wx:if="{{item.status === 'available' && item.remainingSpots <= 3}}">仅剩{{item.remainingSpots}}位</text>
+        </view>
+        <view class="card-actions">
+          <view class="fav-btn {{item.isFav ? 'fav-active' : ''}}" catchtap="toggleFav" data-id="{{item._id}}">
+            {{item.isFav ? '❤️' : '🤍'}}
+          </view>
+          <view class="go-detail-btn" bindtap="goDetail" data-id="{{item._id}}">查看详情 ›</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{loading}}">
+      <view class="loading-spinner small"></view>
+      <text class="loading-text">加载更多...</text>
+    </view>
+    <view class="no-more" wx:elif="{{!hasMore && list.length > 0}}">
+      <text>— 没有更多了 —</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,119 @@
+<view class="page-detail">
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <block wx:else>
+    <!-- 专家头部信息 -->
+    <view class="card head">
+      <view class="head-top">
+        <view class="avatar">{{detail.avatarText}}</view>
+        <view class="fav-btn {{isFav ? 'fav-active' : ''}}" bindtap="toggleFav">
+          {{isFav ? '❤️' : '🤍'}}
+        </view>
+      </view>
+      <text class="name">{{detail.name}}</text>
+      <view class="head-tags">
+        <text class="identity-tag">{{detail.identity || '银龄导师'}}</text>
+        <text class="stars">{{detail.stars}}</text>
+      </view>
+      <text class="title-tag">{{detail.title || detail.field || detail.expertise}}</text>
+      <text class="field" wx:if="{{detail.field || detail.expertiseDetail}}">擅长：{{detail.field || detail.expertiseDetail}}</text>
+      <view class="stats-row">
+        <view class="stat-item">
+          <text class="stat-value">{{detail.avgRating || '5.0'}}</text>
+          <text class="stat-label">评分</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{detail.consultCount || 0}}</text>
+          <text class="stat-label">服务次数</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{detail.totalHours || 0}}</text>
+          <text class="stat-label">服务时长</text>
+        </view>
+      </view>
+      <view class="status-badge status-{{detail.status}}">{{detail.statusText || '可预约'}}</view>
+    </view>
+
+    <!-- 专家简介 -->
+    <view class="card" wx:if="{{detail.intro || detail.bio}}">
+      <text class="section-title">个人简介</text>
+      <text class="bio-text">{{detail.intro || detail.bio || '暂无简介'}}</text>
+    </view>
+
+    <!-- 家长角色：预约时段 -->
+    <block wx:if="{{role === 'parent' && detail.status === 'available'}}">
+      <view class="card">
+        <text class="section-title">可预约时间</text>
+        <view wx:if="{{timeSlots.length === 0}}" class="empty-section">暂无可预约时段</view>
+        <view class="slots" wx:else>
+          <view class="slot {{item.selected ? 'on' : ''}} {{!item.available ? 'disabled' : ''}}"
+            wx:for="{{timeSlots}}" wx:key="id"
+            data-id="{{item.id}}"
+            bindtap="{{item.available ? 'selectSlot' : ''}}">
+            <text class="slot-date">{{item.displayDate}}</text>
+            <text class="slot-time">{{item.time}}</text>
+            <text class="slot-status" wx:if="{{!item.available}}">已约</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 已预约状态 -->
+    <view class="card booked-info" wx:if="{{role === 'parent' && myBooking}}">
+      <text class="section-title">我的预约</text>
+      <text class="booked-time">{{myBooking.slotInfo.displayTime}}</text>
+      <text class="booked-tip">请按时参加咨询，如需取消请提前操作。</text>
+    </view>
+
+    <!-- 用户评价 -->
+    <view class="card">
+      <text class="section-title">用户评价 ({{comments.length}})</text>
+      <view wx:if="{{comments.length === 0}}" class="empty-section">暂无评价</view>
+      <view class="comment-list" wx:else>
+        <view class="comment-item" wx:for="{{comments}}" wx:key="_id">
+          <view class="comment-header">
+            <text class="comment-user">{{item.userName || '匿名用户'}}</text>
+            <text class="comment-rating">{{item.rating}}⭐</text>
+          </view>
+          <text class="comment-content">{{item.content}}</text>
+          <text class="comment-time">{{item.friendlyTime || ''}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 专家角色：编辑按钮 -->
+    <view class="card" wx:if="{{role === 'expert'}}">
+      <text class="section-title">管理功能</text>
+      <view class="expert-actions">
+        <view class="action-btn" bindtap="goEditProfile">
+          <text class="action-icon">✏️</text>
+          <text class="action-text">编辑资料</text>
+        </view>
+        <view class="action-btn" bindtap="goRecords">
+          <text class="action-icon">📋</text>
+          <text class="action-text">咨询记录</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作按钮 -->
+    <view class="btns">
+      <!-- 家长操作 -->
+      <block wx:if="{{role === 'parent'}}">
+        <button class="btn btn-primary" wx:if="{{detail.status === 'available' && !myBooking}}" bindtap="bookExpert">预约咨询</button>
+        <button class="btn btn-secondary" wx:if="{{myBooking}}" bindtap="goRecords">查看咨询记录</button>
+        <view class="btn-disabled" wx:if="{{detail.status === 'busy'}}">导师忙碌中</view>
+        <view class="btn-disabled" wx:if="{{detail.status === 'offline'}}">导师离线</view>
+      </block>
+
+      <!-- 专家操作 -->
+      <block wx:if="{{role === 'expert'}}">
+        <button class="btn btn-primary" bindtap="goEditProfile">编辑资料</button>
+      </block>
+    </view>
+  </block>
+</view>

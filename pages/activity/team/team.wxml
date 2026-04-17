@@ -1,0 +1,27 @@
+<view class="page-team">
+  <view class="card">
+    <text class="activity-name">{{activityName}}</text>
+    <text class="meta">时间：{{time}} · 地点：{{place}}</text>
+    <text class="tip">老年人与青年人组队，系统将为您匹配队友；也可邀请好友组队。</text>
+  </view>
+  <view class="card">
+    <text class="label">我的身份</text>
+    <text class="value">{{myRole}}</text>
+  </view>
+  <view class="card" wx:if="{{teammate.name}}">
+    <text class="label">已匹配队友</text>
+    <view class="teammate">
+      <text class="name">{{teammate.name}}</text>
+      <text class="role">{{teammate.role}}</text>
+    </view>
+  </view>
+  <view class="card" wx:else>
+    <text class="label">组队状态</text>
+    <text class="value">尚未组队</text>
+    <button class="btn-match" bindtap="match">一键匹配队友</button>
+  </view>
+  <view class="card">
+    <text class="label">邀请组队</text>
+    <button class="btn-invite" open-type="share">分享邀请好友组队</button>
+  </view>
+</view>

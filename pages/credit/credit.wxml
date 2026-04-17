@@ -1,0 +1,107 @@
+<view class="page-credit">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">{{roleName}}</text>
+    <view class="level-badge level-{{level}}">
+      <text>{{levelText}}</text>
+    </view>
+  </view>
+
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+
+  <block wx:else>
+    <!-- 信用总分卡片 -->
+    <view class="card score-card">
+      <view class="score-circle">
+        <text class="score-num">{{creditScore}}</text>
+        <text class="score-unit">分</text>
+      </view>
+      <view class="score-info">
+        <text class="score-label">信用总分</text>
+        <text class="score-desc">初始信用分 100 分，分数范围 0-100</text>
+      </view>
+    </view>
+
+    <!-- 维度分展示 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">维度评分</text>
+      </view>
+      <view class="dimensions-grid">
+        <view class="dimension-item" wx:for="{{dimensions}}" wx:key="key">
+          <view class="dimension-icon">{{item.icon}}</view>
+          <text class="dimension-name">{{item.name}}</text>
+          <text class="dimension-score {{item.score >= 90 ? 'high' : item.score >= 70 ? 'mid' : 'low'}}">{{item.score}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 行为记录 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">行为记录</text>
+      </view>
+      <view class="records-list">
+        <view class="record-item" wx:for="{{records}}" wx:key="_id">
+          <view class="record-icon {{item.type === 'earn' ? 'earn' : 'deduct'}}">
+            {{item.type === 'earn' ? '+' : '-'}}{{item.points}}
+          </view>
+          <view class="record-content">
+            <text class="record-reason">{{item.reason}}</text>
+            <text class="record-time">{{item.createdAt}}</text>
+          </view>
+        </view>
+        <view wx:if="{{records.length === 0}}" class="empty-records">
+          <text>暂无行为记录</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加分/扣分规则 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">评分规则</text>
+      </view>
+      <view class="rules-card">
+        <view class="rules-section">
+          <view class="rules-title add">
+            <text>加分规则</text>
+          </view>
+          <view class="rule-item" wx:for="{{rules.add}}" wx:key="rule">
+            <text class="rule-desc">{{item.rule}}</text>
+            <text class="rule-points add">{{item.points}}</text>
+          </view>
+        </view>
+        <view class="rules-section">
+          <view class="rules-title deduct">
+            <text>扣分规则</text>
+          </view>
+          <view class="rule-item" wx:for="{{rules.deduct}}" wx:key="rule">
+            <text class="rule-desc">{{item.rule}}</text>
+            <text class="rule-points deduct">{{item.points}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 信用权益 -->
+    <view class="section">
+      <view class="section-header">
+        <text class="section-title">信用权益</text>
+      </view>
+      <view class="benefits-list">
+        <view class="benefit-item {{item.unlocked ? 'unlocked' : 'locked'}}" wx:for="{{benefits}}" wx:key="level">
+          <view class="benefit-level">{{item.level}}</view>
+          <view class="benefit-rights">
+            <text>{{item.rights}}</text>
+          </view>
+          <view class="benefit-status">
+            <text wx:if="{{item.unlocked}}">✓</text>
+            <text wx:else>🔒</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<custom-tab-bar current="2"></custom-tab-bar>

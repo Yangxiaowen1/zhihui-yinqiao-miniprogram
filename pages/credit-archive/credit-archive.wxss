@@ -1,0 +1,111 @@
+/* 信用档案页面 - 紫色主题 */
+.page-credit-archive {
+  padding: 24rpx 24rpx 80rpx;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f3e5f5 0%, #e1bee7 100%);
+}
+
+.card {
+  background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+  border-radius: 24rpx;
+  padding: 36rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 6rpx 20rpx rgba(156, 39, 176, 0.15);
+  border: 3rpx solid #ce93d8;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8rpx;
+  height: 100%;
+  background: #9c27b0;
+  border-radius: 24rpx 0 0 24rpx;
+}
+
+.card.score {
+  text-align: center;
+  padding: 60rpx 40rpx;
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  border-color: #ba68c8;
+}
+
+.card.score .label {
+  display: block;
+  font-size: 30rpx;
+  color: #7b1fa2;
+  margin-bottom: 20rpx;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.card.score .num {
+  font-size: 80rpx;
+  font-weight: bold;
+  color: #6a1b9a;
+  display: block;
+  margin-bottom: 20rpx;
+  text-shadow: 0 2rpx 8rpx rgba(106, 27, 154, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.card.score .desc {
+  font-size: 26rpx;
+  color: #7b1fa2;
+  position: relative;
+  z-index: 1;
+}
+
+.label {
+  font-size: 28rpx;
+  color: #7b1fa2;
+  display: block;
+  margin-bottom: 24rpx;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+.item {
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #f3e5f5;
+  position: relative;
+  z-index: 1;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item .title {
+  font-size: 30rpx;
+  color: #333;
+  display: block;
+  margin-bottom: 8rpx;
+  font-weight: 500;
+}
+
+.item .meta {
+  font-size: 26rpx;
+  color: #7b1fa2;
+}
+
+/* 适老化设计增强 */
+.card:active {
+  transform: scale(0.98);
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+}
+
+/* 无障碍支持 */
+@media (prefers-reduced-motion: reduce) {
+  .card:active {
+    transform: none;
+  }
+}

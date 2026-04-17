@@ -1,0 +1,14 @@
+<view class="page-credit-archive">
+  <view class="card score">
+    <text class="label">银龄信用分</text>
+    <text class="num">128</text>
+    <text class="desc">参与课程、咨询、活动可获得信用分与评价记录</text>
+  </view>
+  <view class="card">
+    <text class="label">评价记录</text>
+    <view class="item" wx:for="{{records}}" wx:key="id">
+      <text class="title">{{item.title}}</text>
+      <text class="meta">{{item.time}} · {{item.type}}</text>
+    </view>
+  </view>
+</view>

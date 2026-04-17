@@ -1,0 +1,80 @@
+/* 消息通知页面 - 紫色主题 */
+.page-notifications {
+  padding: 24rpx 24rpx 80rpx;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f3e5f5 0%, #e1bee7 100%);
+}
+
+.card {
+  background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+  border-radius: 24rpx;
+  padding: 36rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 6rpx 20rpx rgba(156, 39, 176, 0.15);
+  border: 3rpx solid #ce93d8;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8rpx;
+  height: 100%;
+  background: #9c27b0;
+  border-radius: 24rpx 0 0 24rpx;
+}
+
+.card .title {
+  font-size: 34rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 16rpx;
+  color: #6a1b9a;
+  position: relative;
+  z-index: 1;
+}
+
+.card .content {
+  font-size: 30rpx;
+  color: #333;
+  display: block;
+  margin-bottom: 16rpx;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+.card .time {
+  font-size: 26rpx;
+  color: #7b1fa2;
+  position: relative;
+  z-index: 1;
+}
+
+.empty {
+  text-align: center;
+  color: #7b1fa2;
+  padding: 100rpx 24rpx;
+  font-size: 32rpx;
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+  border-radius: 24rpx;
+  border: 3rpx solid #ce93d8;
+  margin-top: 40rpx;
+}
+
+/* 适老化设计增强 */
+.card:active {
+  transform: scale(0.98);
+  background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+}
+
+/* 无障碍支持 */
+@media (prefers-reduced-motion: reduce) {
+  .card:active {
+    transform: none;
+  }
+}

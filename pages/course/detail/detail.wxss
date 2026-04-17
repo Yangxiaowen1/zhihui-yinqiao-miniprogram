@@ -1,0 +1,371 @@
+/* 课程详情页面 - 绿色主题 */
+.page-detail {
+  padding: 24rpx 24rpx 160rpx;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f0f7f0 0%, #e8f5e8 100%);
+}
+
+/* 加载状态 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 200rpx 0;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #e0e0e0;
+  border-top-color: #4caf50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 卡片通用 */
+.card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 36rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 6rpx 20rpx rgba(76, 175, 80, 0.12);
+  border: 2rpx solid #e8f5e9;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8rpx;
+  height: 100%;
+  background: #4caf50;
+}
+
+/* 头部卡片 */
+.head {
+  padding-bottom: 28rpx;
+}
+
+.head-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+}
+
+.course-name {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #2e7d32;
+  flex: 1;
+  line-height: 1.4;
+  position: relative;
+  z-index: 1;
+}
+
+.fav-btn {
+  font-size: 36rpx;
+  padding: 8rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.fav-active {
+  transform: scale(1.1);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+
+.status-available {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-full {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.status-ended {
+  background: #f5f5f5;
+  color: #757575;
+}
+
+.status-cancelled {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.meta-row {
+  display: flex;
+  gap: 24rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.meta-item {
+  font-size: 26rpx;
+  color: #558b2f;
+}
+
+/* 进度条 */
+.participant-bar {
+  height: 12rpx;
+  background: #e8f5e9;
+  border-radius: 6rpx;
+  overflow: hidden;
+  margin-bottom: 8rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #66bb6a);
+  border-radius: 6rpx;
+  transition: width 0.3s;
+}
+
+.participant-text {
+  font-size: 24rpx;
+  color: #81c784;
+  position: relative;
+  z-index: 1;
+}
+
+/* 分区标题 */
+.section-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2e7d32;
+  margin-bottom: 20rpx;
+  padding-left: 16rpx;
+  border-left: 6rpx solid #4caf50;
+}
+
+/* 信息网格 */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #81c784;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 课程介绍 */
+.course-intro {
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+/* 报名信息 */
+.registration-info {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.reg-status {
+  padding: 6rpx 16rpx;
+  border-radius: 12rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.reg-registered {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.reg-attended {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.reg-completed {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.reg-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 报名列表 */
+.enrollment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.enrollment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 20rpx;
+  background: #f5f5f5;
+  border-radius: 12rpx;
+}
+
+.enroll-name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.enroll-status {
+  font-size: 24rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.enroll-registered {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.enroll-attended {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+/* 助教信息 */
+.assistant-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assistant-text {
+  font-size: 28rpx;
+  color: #555;
+}
+
+.assistant-status {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.assistant-status.joined {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.empty-section {
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 底部按钮 */
+.btns {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, #fff 100%);
+  border-top: 2rpx solid #e8f5e9;
+  display: flex;
+  gap: 16rpx;
+}
+
+.btn {
+  flex: 1;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: #fff;
+  box-shadow: 0 6rpx 20rpx rgba(76, 175, 80, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #2196f3, #42a5f5);
+  color: #fff;
+  box-shadow: 0 6rpx 20rpx rgba(33, 150, 243, 0.3);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef5350, #e53935);
+  color: #fff;
+  box-shadow: 0 6rpx 20rpx rgba(244, 67, 54, 0.3);
+}
+
+.btn-danger-outline {
+  background: #fff;
+  color: #ef5350;
+  border: 3rpx solid #ef5350;
+}
+
+.btn-disabled {
+  flex: 1;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #757575;
+  background: #f5f5f5;
+  border-radius: 20rpx;
+  border: 2rpx solid #bdbdbd;
+}
+
+/* 无障碍支持 */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+  }
+  .bar-fill {
+    transition: none;
+  }
+}

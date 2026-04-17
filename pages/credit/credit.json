@@ -1,0 +1,4 @@
+{
+  "navigationBarTitleText": "信用",
+  "usingComponents": { "custom-tab-bar": "/custom-tab-bar/index" }
+}

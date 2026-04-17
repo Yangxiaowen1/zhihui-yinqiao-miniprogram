@@ -1,0 +1,130 @@
+<view class="page-aggregate">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-title">聚合</text>
+    <view class="role-tag">{{roleName}}</view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 模块内容 -->
+  <block wx:else>
+    <!-- 智享学堂·课程 -->
+    <view class="module-card">
+      <view class="module-header" bindtap="goCourse">
+        <view class="module-left">
+          <text class="module-icon">🎓</text>
+          <view class="module-info">
+            <text class="module-title">智享学堂·课程</text>
+            <text class="module-desc">{{courseDesc}}</text>
+          </view>
+        </view>
+        <text class="module-arrow">›</text>
+      </view>
+      <view class="module-preview">
+        <view wx:if="{{courseList.length === 0}}" class="empty-preview">
+          <text class="empty-text">暂无课程</text>
+        </view>
+        <view wx:else class="preview-list">
+          <view class="preview-item" wx:for="{{courseList}}" wx:key="_id" bindtap="goCourseDetail" data-id="{{item._id}}">
+            <view class="preview-content">
+              <text class="preview-name">{{item.name}}</text>
+              <view class="preview-meta">
+                <text class="preview-teacher">{{item.teacherName || '待定'}}</text>
+                <text class="preview-status status-{{item.status}}">{{item.statusText}}</text>
+              </view>
+            </view>
+            <view class="preview-right">
+              <text class="preview-count">{{item.currentParticipants || 0}}/{{item.maxParticipants || 20}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="view-all" bindtap="goCourse">
+          <text>查看全部课程</text>
+          <text class="arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 银龄智库·专家 -->
+    <view class="module-card">
+      <view class="module-header" bindtap="goExpert">
+        <view class="module-left">
+          <text class="module-icon">👥</text>
+          <view class="module-info">
+            <text class="module-title">银龄智库·专家</text>
+            <text class="module-desc">{{expertDesc}}</text>
+          </view>
+        </view>
+        <text class="module-arrow">›</text>
+      </view>
+      <view class="module-preview">
+        <view wx:if="{{expertList.length === 0}}" class="empty-preview">
+          <text class="empty-text">暂无专家</text>
+        </view>
+        <view wx:else class="preview-list">
+          <view class="preview-item expert-item" wx:for="{{expertList}}" wx:key="_id" bindtap="goExpertDetail" data-id="{{item._id}}">
+            <view class="expert-avatar">{{item.name ? item.name[0] : '师'}}</view>
+            <view class="preview-content">
+              <text class="preview-name">{{item.name}}</text>
+              <view class="preview-meta">
+                <text class="preview-field">{{item.expertise || item.title}}</text>
+                <text class="preview-stars">{{item.starLevel >= 3 ? '⭐⭐⭐' : item.starLevel >= 2 ? '⭐⭐' : '⭐'}}</text>
+              </view>
+            </view>
+            <view class="preview-right">
+              <text class="preview-rating">{{item.avgRating || '5.0'}}分</text>
+            </view>
+          </view>
+        </view>
+        <view class="view-all" bindtap="goExpert">
+          <text>查看全部专家</text>
+          <text class="arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 青银共创·活动 -->
+    <view class="module-card">
+      <view class="module-header" bindtap="goActivity">
+        <view class="module-left">
+          <text class="module-icon">🤝</text>
+          <view class="module-info">
+            <text class="module-title">青银共创·活动</text>
+            <text class="module-desc">{{activityDesc}}</text>
+          </view>
+        </view>
+        <text class="module-arrow">›</text>
+      </view>
+      <view class="module-preview">
+        <view wx:if="{{activityList.length === 0}}" class="empty-preview">
+          <text class="empty-text">暂无活动</text>
+        </view>
+        <view wx:else class="preview-list">
+          <view class="preview-item activity-item" wx:for="{{activityList}}" wx:key="_id" bindtap="goActivityDetail" data-id="{{item._id}}">
+            <view class="activity-type-tag">{{item.activityTypeText || '活动'}}</view>
+            <view class="preview-content">
+              <text class="preview-name">{{item.name}}</text>
+              <view class="preview-meta">
+                <text class="preview-time">{{item.startTimeText}}</text>
+                <text class="preview-place">{{item.place}}</text>
+              </view>
+            </view>
+            <view class="preview-right">
+              <text class="preview-count">{{item.currentParticipants || 0}}/{{item.maxParticipants || 20}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="view-all" bindtap="goActivity">
+          <text>查看全部活动</text>
+          <text class="arrow">›</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<custom-tab-bar current="1"></custom-tab-bar>

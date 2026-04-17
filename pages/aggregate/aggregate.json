@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "聚合",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "custom-tab-bar": "/custom-tab-bar/index"
+  }
+}

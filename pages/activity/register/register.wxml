@@ -1,0 +1,24 @@
+<view class="page-register">
+  <view class="card">
+    <text class="activity-name">{{activityName}}</text>
+    <text class="meta">时间：{{time}} · 地点：{{place}}</text>
+  </view>
+  <view class="card">
+    <text class="label">参与人姓名</text>
+    <input class="input" placeholder="请输入姓名" value="{{name}}" bindinput="onNameInput" />
+  </view>
+  <view class="card">
+    <text class="label">联系电话</text>
+    <input class="input" type="number" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" />
+  </view>
+  <view class="card">
+    <text class="label">身份</text>
+    <picker mode="selector" range="{{roles}}" value="{{roleIndex}}" bindchange="onRoleChange">
+      <view class="picker">{{roles[roleIndex]}}</view>
+    </picker>
+  </view>
+  <view class="card">
+    <text class="tip">报名成功后可在「去组队」中与青年/银龄组队，共同参与活动。</text>
+  </view>
+  <button class="btn btn-primary" bindtap="submit">提交报名</button>
+</view>

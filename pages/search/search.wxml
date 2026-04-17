@@ -1,0 +1,23 @@
+<view class="page-search">
+  <view class="search-bar">
+    <input
+      class="input"
+      placeholder="搜索课程、专家、活动"
+      value="{{keyword}}"
+      bindinput="onInput"
+      focus
+    />
+    <text class="btn-cancel" bindtap="cancel">取消</text>
+  </view>
+  <view class="tabs">
+    <text class="tab {{type === 'course' ? 'on' : ''}}" data-type="course" bindtap="setType">课程</text>
+    <text class="tab {{type === 'expert' ? 'on' : ''}}" data-type="expert" bindtap="setType">专家</text>
+    <text class="tab {{type === 'activity' ? 'on' : ''}}" data-type="activity" bindtap="setType">活动</text>
+  </view>
+  <view class="result">
+    <view class="item" wx:for="{{result}}" wx:key="id" bindtap="goDetail" data-item="{{item}}">
+      <text class="name">{{item.name}}</text>
+      <text class="sub" wx:if="{{item.sub}}">{{item.sub}}</text>
+    </view>
+  </view>
+</view>

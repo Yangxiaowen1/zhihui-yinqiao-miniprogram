@@ -1,0 +1,18 @@
+<view class="page-evaluate">
+  <view class="card">
+    <text class="course-name">{{courseName}}</text>
+    <text class="label">请为本次课程打分（老年人给小孩上课后的评价）</text>
+    <view class="stars">
+      <text
+        class="star {{index < score ? 'on' : ''}}"
+        wx:for="{{5}}"
+        wx:key="*this"
+        data-index="{{index + 1}}"
+        bindtap="setScore"
+      >★</text>
+    </view>
+    <text class="label">评价内容（选填）</text>
+    <textarea class="textarea" placeholder="说说您的感受或建议" value="{{content}}" bindinput="onContentInput" />
+  </view>
+  <button class="btn btn-primary" bindtap="submit">提交评价</button>
+</view>

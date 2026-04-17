@@ -1,0 +1,108 @@
+<view class="page-expert-list">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="header-left">
+      <text class="page-title">银龄智库</text>
+      <text class="page-desc">银龄导师，智慧传承</text>
+    </view>
+    <view class="role-tag">{{roleName}}</view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-tabs">
+      <view class="filter-tab {{activeFilter === 'field' ? 'active' : ''}}" bindtap="toggleFilter" data-type="field">
+        <text>{{filterLabels.field}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+      <view class="filter-tab {{activeFilter === 'starLevel' ? 'active' : ''}}" bindtap="toggleFilter" data-type="starLevel">
+        <text>{{filterLabels.starLevel}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+      <view class="filter-tab {{activeFilter === 'community' ? 'active' : ''}}" bindtap="toggleFilter" data-type="community">
+        <text>{{filterLabels.community}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+      <view class="filter-tab {{activeFilter === 'availability' ? 'active' : ''}}" bindtap="toggleFilter" data-type="availability">
+        <text>{{filterLabels.availability}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+    </view>
+
+    <!-- 筛选下拉面板 -->
+    <view class="filter-panel" wx:if="{{showFilterPanel}}">
+      <view class="filter-options" wx:if="{{activeFilter === 'field'}}">
+        <view class="filter-option {{filters.field === item.id ? 'selected' : ''}}"
+          wx:for="{{fieldOptions}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="field" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-options" wx:if="{{activeFilter === 'starLevel'}}">
+        <view class="filter-option {{filters.starLevel === item.id ? 'selected' : ''}}"
+          wx:for="{{starOptions}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="starLevel" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-options" wx:if="{{activeFilter === 'community'}}">
+        <view class="filter-option {{filters.community === item.id ? 'selected' : ''}}"
+          wx:for="{{communityOptions}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="community" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-options" wx:if="{{activeFilter === 'availability'}}">
+        <view class="filter-option {{filters.availability === item.id ? 'selected' : ''}}"
+          wx:for="{{availabilityOptions}}" wx:key="id"
+          bindtap="onFilterSelect" data-type="availability" data-value="{{item.id}}">
+          {{item.name}}
+        </view>
+      </view>
+      <view class="filter-reset" bindtap="resetFilters">重置筛选</view>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:elif="{{list.length === 0}}" class="empty-container">
+    <text class="empty-icon">👥</text>
+    <text class="empty-text">暂无专家数据</text>
+    <text class="empty-desc">换个筛选条件试试吧</text>
+  </view>
+
+  <!-- 专家列表 -->
+  <view wx:else class="list">
+    <view class="expert-card" wx:for="{{list}}" wx:key="_id">
+      <view class="card-main" bindtap="goDetail" data-id="{{item._id}}">
+        <view class="avatar">{{item.avatarText}}</view>
+        <view class="info">
+          <view class="name-row">
+            <text class="name">{{item.name}}</text>
+            <text class="identity-tag">{{item.identity || '银龄导师'}}</text>
+          </view>
+          <view class="meta-row">
+            <text class="title">{{item.title || item.field || item.expertise}}</text>
+            <text class="stars">{{item.stars}}</text>
+          </view>
+          <text class="rating">评分：{{item.avgRating || '5.0'}} · 服务{{item.consultCount || 0}}次</text>
+          <text class="community" wx:if="{{item.community}}">📍 {{item.community}}</text>
+        </view>
+        <view class="right">
+          <text class="status status-{{item.status}}">{{item.statusText}}</text>
+          <text class="arrow">›</text>
+        </view>
+      </view>
+      <view class="card-actions">
+        <view class="fav-btn {{item.isFav ? 'fav-active' : ''}}" catchtap="toggleFav" data-id="{{item._id}}">
+          {{item.isFav ? '❤️' : '🤍'}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,133 @@
+/* 智汇银桥 - 简化角色选择页样式 */
+.role-select-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f0f7f0 0%, #e8f5e8 100%);
+  padding: 60rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* ========== 顶部提示 ========== */
+.page-header {
+  text-align: center;
+  padding: 40rpx 0 60rpx;
+}
+
+.page-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-bottom: 20rpx;
+  letter-spacing: 4rpx;
+}
+
+.page-desc {
+  display: block;
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* ========== 角色卡片 ========== */
+.role-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 28rpx;
+}
+
+.role-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 36rpx 32rpx;
+  box-shadow: 0 6rpx 24rpx rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.role-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.15);
+}
+
+/* 左侧装饰条 */
+.role-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8rpx;
+  height: 100%;
+}
+
+.role-parent::before {
+  background: linear-gradient(180deg, #4caf50, #81c784);
+}
+
+.role-expert::before {
+  background: linear-gradient(180deg, #2196f3, #64b5f6);
+}
+
+.role-volunteer::before {
+  background: linear-gradient(180deg, #ff9800, #ffb74d);
+}
+
+.role-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  margin-right: 28rpx;
+  flex-shrink: 0;
+}
+
+.role-parent .role-icon {
+  background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+}
+
+.role-expert .role-icon {
+  background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+}
+
+.role-volunteer .role-icon {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+}
+
+.role-info {
+  flex: 1;
+}
+
+.role-name {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.role-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.role-arrow {
+  font-size: 48rpx;
+  color: #ccc;
+  font-weight: bold;
+}
+
+/* ========== 底部提示 ========== */
+.page-footer {
+  text-align: center;
+  padding: 60rpx 0 40rpx;
+}
+
+.footer-text {
+  font-size: 26rpx;
+  color: #999;
+}

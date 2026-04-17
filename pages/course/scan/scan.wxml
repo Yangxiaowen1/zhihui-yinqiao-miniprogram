@@ -1,0 +1,10 @@
+<view class="page-scan">
+  <view class="tip">请在现场扫描课程签到二维码完成签到</view>
+  <view class="scan-area">
+    <view class="scan-btn" bindtap="scanCode">点击扫码签到</view>
+  </view>
+  <view class="course-info" wx:if="{{courseName}}">
+    <text>课程：{{courseName}}</text>
+    <text>时间：{{time}}</text>
+  </view>
+</view>

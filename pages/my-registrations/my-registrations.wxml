@@ -1,0 +1,25 @@
+<view class="page-my-reg">
+  <view class="tabs">
+    <text class="tab {{current === 0 ? 'on' : ''}}" data-idx="0" bindtap="switchTab">课程预约</text>
+    <text class="tab {{current === 1 ? 'on' : ''}}" data-idx="1" bindtap="switchTab">专家预约</text>
+    <text class="tab {{current === 2 ? 'on' : ''}}" data-idx="2" bindtap="switchTab">活动报名</text>
+  </view>
+  <view class="list" wx:if="{{current === 0}}">
+    <view class="card" wx:for="{{courseList}}" wx:key="id">
+      <text class="title">{{item.name}}</text>
+      <text class="meta">时间：{{item.time}} · 状态：{{item.status}}</text>
+    </view>
+  </view>
+  <view class="list" wx:if="{{current === 1}}">
+    <view class="card" wx:for="{{expertList}}" wx:key="id">
+      <text class="title">{{item.expert}} - {{item.slot}}</text>
+      <text class="meta">问题：{{item.question}}</text>
+    </view>
+  </view>
+  <view class="list" wx:if="{{current === 2}}">
+    <view class="card" wx:for="{{activityList}}" wx:key="id">
+      <text class="title">{{item.name}}</text>
+      <text class="meta">时间：{{item.time}} · 状态：已报名</text>
+    </view>
+  </view>
+</view>

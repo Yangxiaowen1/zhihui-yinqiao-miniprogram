@@ -1,0 +1,67 @@
+<!-- 智汇银桥 - 简化登录页 -->
+<view class="login-page">
+  <!-- 顶部LOGO区域 -->
+  <view class="login-header">
+    <view class="logo-container">
+      <view class="app-logo">🏠</view>
+      <text class="app-title">智汇银桥</text>
+      <text class="app-slogan">人才梯队化银龄智库与社区服务协同平台</text>
+    </view>
+  </view>
+
+  <!-- 登录表单区域 -->
+  <view class="login-form-card">
+    <!-- 手机号输入 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-text">手机号</text>
+      </view>
+      <input class="input-field" type="number" placeholder="请输入手机号" maxlength="11" value="{{phone}}" bindinput="onPhoneInput"/>
+    </view>
+
+    <!-- 验证码输入 -->
+    <view class="input-group">
+      <view class="input-label">
+        <text class="label-text">验证码</text>
+      </view>
+      <view class="code-input-wrapper">
+        <input class="input-field code-input" type="number" placeholder="请输入验证码" maxlength="6" value="{{code}}" bindinput="onCodeInput"/>
+        <button class="code-btn {{countdown > 0 ? 'disabled' : ''}}" bindtap="sendCode" disabled="{{countdown > 0}}">
+          <text>{{countdown > 0 ? countdown + 's' : '获取验证码'}}</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 登录按钮 -->
+    <button class="login-btn" bindtap="login">
+      <text class="btn-text">登录 / 注册</text>
+    </button>
+
+    <!-- 微信快捷登录 -->
+    <view class="wechat-login-divider">
+      <view class="divider-line"></view>
+      <text class="divider-text">或</text>
+      <view class="divider-line"></view>
+    </view>
+
+    <button class="wechat-btn" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">
+      <view class="wechat-icon">💬</view>
+      <text class="wechat-text">微信快捷登录</text>
+    </button>
+  </view>
+
+  <!-- 协议勾选 -->
+  <view class="agreement-section">
+    <view class="agreement-check" bindtap="toggleAgreement">
+      <view class="checkbox {{agreed ? 'checked' : ''}}">
+        <text class="check-icon" wx:if="{{agreed}}">✓</text>
+      </view>
+      <text class="agreement-text">我已阅读并同意</text>
+    </view>
+    <view class="agreement-links">
+      <text class="agreement-link" bindtap="goUserAgreement">《用户协议》</text>
+      <text class="agreement-text">和</text>
+      <text class="agreement-link" bindtap="goPrivacyPolicy">《隐私政策》</text>
+    </view>
+  </view>
+</view>

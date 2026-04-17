@@ -1,0 +1,82 @@
+<!-- 智汇银桥 - 银龄导师注册表单（简化版） -->
+<view class="register-page">
+  <view class="page-header">
+    <text class="header-title">完善信息</text>
+    <text class="header-subtitle">请填写必要信息完成注册</text>
+  </view>
+
+  <view class="form-container">
+    <!-- 手机号（只读） -->
+    <view class="form-item">
+      <text class="label required">手机号</text>
+      <input class="input" type="number" value="{{phone}}" disabled placeholder="手机号"/>
+    </view>
+
+    <!-- 所在社区 -->
+    <view class="form-item">
+      <text class="label required">所在社区</text>
+      <picker class="picker" mode="selector" range="{{communities}}" value="{{communityIndex}}" bindchange="onCommunityChange">
+        <view class="picker-content">
+          <text class="picker-text {{communityIndex >= 0 ? 'selected' : ''}}">
+            {{communityIndex >= 0 ? communities[communityIndex] : '请选择所在社区'}}
+          </text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 姓名 -->
+    <view class="form-item">
+      <text class="label required">姓名</text>
+      <input class="input" placeholder="请输入您的姓名" value="{{name}}" bindinput="onNameInput"/>
+    </view>
+
+    <!-- 年龄 -->
+    <view class="form-item">
+      <text class="label required">年龄</text>
+      <picker class="picker" mode="selector" range="{{ageRange}}" value="{{ageIndex}}" bindchange="onAgeChange">
+        <view class="picker-content">
+          <text class="picker-text {{ageIndex >= 0 ? 'selected' : ''}}">
+            {{ageIndex >= 0 ? ageRange[ageIndex] : '请选择年龄'}}
+          </text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 专业领域 -->
+    <view class="form-item">
+      <text class="label required">专业领域</text>
+      <picker class="picker" mode="multiSelector" range="{{expertiseOptions}}" value="{{expertiseIndex}}" bindchange="onExpertiseChange" bindcolumnchange="onExpertiseColumnChange">
+        <view class="picker-content">
+          <text class="picker-text {{expertiseIndex[0] >= 0 ? 'selected' : ''}}">
+            {{expertiseIndex[0] >= 0 ? expertiseOptions[0][expertiseIndex[0]] : '请选择专业领域'}}
+          </text>
+          <text class="picker-arrow">></text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 可服务时间 -->
+    <view class="form-item">
+      <text class="label required">可服务时间</text>
+      <view class="time-options">
+        <view class="time-option {{availableTimes.morning ? 'active' : ''}}" bindtap="toggleTime" data-time="morning">
+          <text class="time-text">上午</text>
+        </view>
+        <view class="time-option {{availableTimes.afternoon ? 'active' : ''}}" bindtap="toggleTime" data-time="afternoon">
+          <text class="time-text">下午</text>
+        </view>
+        <view class="time-option {{availableTimes.evening ? 'active' : ''}}" bindtap="toggleTime" data-time="evening">
+          <text class="time-text">晚上</text>
+        </view>
+        <view class="time-option {{availableTimes.weekend ? 'active' : ''}}" bindtap="toggleTime" data-time="weekend">
+          <text class="time-text">周末</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button class="submit-btn" bindtap="submitRegister">完成注册</button>
+  </view>
+</view>

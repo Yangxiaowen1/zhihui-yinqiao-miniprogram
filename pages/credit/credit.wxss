@@ -1,0 +1,366 @@
+/* 信用页面 - 统一风格 */
+.page-credit {
+  padding: 24rpx 24rpx 140rpx;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 100%);
+}
+
+/* 页面头部 */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+  padding: 0 12rpx;
+}
+
+.page-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.level-badge {
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.level-badge.level-excellent {
+  background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
+  color: #fff;
+}
+
+.level-badge.level-good {
+  background: linear-gradient(135deg, #2196f3 0%, #64b5f6 100%);
+  color: #fff;
+}
+
+.level-badge.level-poor {
+  background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+  color: #fff;
+}
+
+/* 加载状态 */
+.loading {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 卡片通用样式 */
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+/* 信用总分卡片 */
+.score-card {
+  display: flex;
+  align-items: center;
+  padding: 40rpx 32rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.score-circle {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 32rpx;
+}
+
+.score-num {
+  font-size: 64rpx;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1;
+}
+
+.score-unit {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 4rpx;
+}
+
+.score-info {
+  flex: 1;
+}
+
+.score-label {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 8rpx;
+}
+
+.score-desc {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 区块样式 */
+.section {
+  margin-bottom: 24rpx;
+}
+
+.section-header {
+  padding: 16rpx 12rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 维度评分网格 */
+.dimensions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.dimension-item {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx 0;
+  box-sizing: border-box;
+}
+
+.dimension-icon {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.dimension-name {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.dimension-score {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.dimension-score.high {
+  color: #4caf50;
+}
+
+.dimension-score.mid {
+  color: #2196f3;
+}
+
+.dimension-score.low {
+  color: #ff9800;
+}
+
+/* 行为记录列表 */
+.records-list {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.record-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-right: 24rpx;
+}
+
+.record-icon.earn {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+}
+
+.record-icon.deduct {
+  background: rgba(244, 67, 54, 0.1);
+  color: #f44336;
+}
+
+.record-content {
+  flex: 1;
+}
+
+.record-reason {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.record-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.empty-records {
+  text-align: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 评分规则卡片 */
+.rules-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.rules-section {
+  margin-bottom: 24rpx;
+}
+
+.rules-section:last-child {
+  margin-bottom: 0;
+}
+
+.rules-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 16rpx;
+  padding-bottom: 12rpx;
+  border-bottom: 2rpx solid;
+}
+
+.rules-title.add {
+  color: #4caf50;
+  border-color: #4caf50;
+}
+
+.rules-title.deduct {
+  color: #f44336;
+  border-color: #f44336;
+}
+
+.rule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.rule-item:last-child {
+  border-bottom: none;
+}
+
+.rule-desc {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.rule-points {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.rule-points.add {
+  color: #4caf50;
+}
+
+.rule-points.deduct {
+  color: #f44336;
+}
+
+/* 信用权益列表 */
+.benefits-list {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.benefit-item:last-child {
+  border-bottom: none;
+}
+
+.benefit-item.unlocked {
+  background: linear-gradient(90deg, rgba(76, 175, 80, 0.05) 0%, transparent 100%);
+}
+
+.benefit-item.locked {
+  opacity: 0.6;
+}
+
+.benefit-level {
+  width: 180rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.benefit-rights {
+  flex: 1;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.benefit-status {
+  font-size: 28rpx;
+}
+
+.benefit-item.unlocked .benefit-status {
+  color: #4caf50;
+}
+
+.benefit-item.locked .benefit-status {
+  color: #ccc;
+}
+
+/* 适老化设计 */
+.card:active, .dimension-item:active, .benefit-item:active {
+  opacity: 0.9;
+  transform: scale(0.99);
+  transition: all 0.2s;
+}
+
+/* 无障碍支持 */
+@media (prefers-reduced-motion: reduce) {
+  .card:active, .dimension-item:active, .benefit-item:active {
+    transform: none;
+  }
+}

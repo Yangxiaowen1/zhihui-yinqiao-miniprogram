@@ -1,0 +1,195 @@
+/* 编辑资料页面 */
+.profile-page {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 40rpx;
+}
+
+.page-header {
+  background: linear-gradient(135deg, #9c27b0, #ba68c8);
+  padding: 40rpx;
+  text-align: center;
+}
+
+.header-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 12rpx;
+}
+
+.header-subtitle {
+  display: block;
+  font-size: 26rpx;
+  color: rgba(255,255,255,0.8);
+}
+
+/* 头像区域 */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx;
+  background: #fff;
+}
+
+.avatar-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: #e1bee7;
+}
+
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #9c27b0, #ba68c8);
+}
+
+.avatar-placeholder-text {
+  font-size: 64rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.avatar-tip {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 表单容器 */
+.form-container {
+  padding: 24rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #9c27b0;
+  padding: 24rpx 16rpx 16rpx;
+}
+
+.form-item {
+  background: #fff;
+  padding: 24rpx;
+  margin-bottom: 2rpx;
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  width: 160rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.input {
+  flex: 1;
+  height: 60rpx;
+  font-size: 28rpx;
+  color: #333;
+  text-align: right;
+}
+
+.input:disabled {
+  color: #999;
+}
+
+.picker {
+  flex: 1;
+}
+
+.picker-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker-arrow {
+  margin-left: 12rpx;
+  color: #ccc;
+}
+
+/* 性别选择 */
+.gender-group {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 24rpx;
+}
+
+.gender-option {
+  width: 120rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  background: #f5f5f5;
+}
+
+.gender-option.active {
+  background: #e8f5e9;
+  border-color: #4caf50;
+}
+
+.gender-text {
+  font-size: 26rpx;
+  color: #333;
+}
+
+/* 时间选择 */
+.time-options {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 16rpx;
+}
+
+.time-option {
+  width: 100rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 8rpx;
+  background: #f5f5f5;
+}
+
+.time-option.active {
+  background: #f3e5f5;
+  border-color: #9c27b0;
+}
+
+.time-text {
+  font-size: 24rpx;
+  color: #333;
+}
+
+/* 保存按钮 */
+.save-btn {
+  margin: 40rpx 24rpx;
+  height: 96rpx;
+  background: linear-gradient(135deg, #9c27b0, #ba68c8);
+  border: none;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: 0 6rpx 20rpx rgba(156, 39, 176, 0.3);
+}
+
+.save-btn:active {
+  opacity: 0.9;
+}

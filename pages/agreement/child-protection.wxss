@@ -1,0 +1,65 @@
+/* 儿童个人信息保护声明样式 */
+.agreement-page {
+  min-height: 100vh;
+  background: #fff;
+  padding: 40rpx;
+}
+
+.agreement-content {
+  padding-bottom: 80rpx;
+}
+
+.agreement-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+.update-time,
+.effective-time {
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+  margin-bottom: 8rpx;
+}
+
+.notice-box {
+  background: #fff8e1;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin: 32rpx 0;
+  border-left: 6rpx solid #ff9800;
+}
+
+.notice-text {
+  font-size: 28rpx;
+  color: #f57c00;
+  line-height: 1.8;
+}
+
+.section {
+  margin-top: 40rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-left: 16rpx;
+  border-left: 6rpx solid #ff9800;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.section-content text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+}
